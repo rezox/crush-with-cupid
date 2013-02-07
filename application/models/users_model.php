@@ -13,9 +13,19 @@ class Users_model extends CI_Model
 		   show_error($this->migration->error_string());
 	}
 
-	function find($fbid)
+	function find_by_fbid($fbid)
 	{
 		$this->db->where('fbid', $fbid)
+			->from('users');
+
+		$query = $this->db->get();
+
+		return $query->row_array();
+	}
+
+	function find_by_id($id)
+	{
+		$this->db->where('id', $id)
 			->from('users');
 
 		$query = $this->db->get();
@@ -34,6 +44,8 @@ class Users_model extends CI_Model
 		);
 
 		$this->db->insert('users', $fields);
+
+		return $this->find($user['uid']);
 	}
 
 }

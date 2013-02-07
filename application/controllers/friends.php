@@ -5,6 +5,7 @@ class Friends extends REST_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->library('fb');
 		$this->load->model('friends_model');
 	}
 

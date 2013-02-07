@@ -7,8 +7,17 @@ class Friends_model extends CI_Model
 	{
 		parent::__construct();
 		$this->load->library('fb');
+		$this->load->database();
+
+		$this->load->library('migration');
+		if (!$this->migration->current())
+		   show_error($this->migration->error_string());
 	}
 
+	/**
+	 * I'm very unhappy at this function, there's
+	 * so much overhead. Look at this later.
+	 */
 	function lookup_opposite_sex_friends()
 	{
 		// looking up current sex.
@@ -21,7 +30,7 @@ class Friends_model extends CI_Model
 			$sex = 'male';
 
 		// looking up opposite sex friends.
-		$query = 'SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND sex = "' . $sex . '"';
+		$query = 'SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND sex != "' . $sex . '"';
 		$friend_response = $this->fb->run_fql_query($query);
 
 		$ids = array();
