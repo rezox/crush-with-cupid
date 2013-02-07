@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-recess');
 	grunt.loadNpmTasks('grunt-shell');
 	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-coffee');
 
 	var recessOptions = function(bool) {
 		bool = ((typeof bool === 'undefined')? false : bool);
@@ -25,9 +26,11 @@ module.exports = function(grunt) {
 		pkg: '<json:package.json>',
 		meta: {},
 		files: {
+			coffee: [
+				'assets/coffee/*.coffee'
+			],
 			js: [
-				'assets/js/frontpage.js',
-				'assets/js/base.js'
+				'assets/js/*.js',
 			],
 			less: [
 				'assets/less/base.less'
@@ -36,27 +39,36 @@ module.exports = function(grunt) {
 				'*.html'
 			]
 		},
+		coffee: {
+			app: {
+				src: '<config:files.coffee>',
+				dest: 'assets/js',
+				options: {
+					bare: true
+				}
+			}
+		},
 		concat: {
 			js: {
 				src: '<config:files.js>',
-				dest: 'assets/js/app.js'
+				dest: 'assets/app.js'
 			}
 		},
 		min: {
 			js: {
 				src: '<config:files.js>',
-				dest: 'assets/js/app.js'
+				dest: 'assets/app.js'
 			}
 		},
 		recess: {
 			min: {
 				src: '<config:files.less>',
-				dest: 'assets/css/style.css',
+				dest: 'assets/style.css',
 				options: recessOptions(true)
 			},
 			max: {
 				src: '<config:files.less>',
-				dest: 'assets/css/style.css',
+				dest: 'assets/style.css',
 				options: recessOptions(false)
 			}
 		},
@@ -65,9 +77,9 @@ module.exports = function(grunt) {
 				files: ['assets/less/*.less', 'assets/less/**/*.less'],
 				tasks: 'concat recess:max'
 			},
-			js: {
-				files: '<config:files.js>',
-				tasks: 'concat recess:max'
+			coffee: {
+				files: '<config:files.coffee>',
+				tasks: 'coffee concat recess:max'
 			},
 			html: {
 				files: '<config:files.html>',
@@ -93,6 +105,5 @@ module.exports = function(grunt) {
 	});
 
 	// Default task.
-	grunt.registerTask('default', 'concat recess:max');
-  	grunt.registerTask('deploy', 'min recess:min');
+	grunt.registerTask('default', 'coffee concat recess:max');
 };

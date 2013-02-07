@@ -13,6 +13,7 @@
     "grunt-recess": "~0.1.0",
     "grunt-requirejs": "~0.2.9",
     "grunt-shell": "~0.1.2",
-    "grunt-contrib": "~0.1.1"
+    "grunt-contrib": "~0.1.1",
+    "grunt-coffee": "~0.0.6"
   }
 }

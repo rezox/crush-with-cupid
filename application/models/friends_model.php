@@ -30,7 +30,7 @@ class Friends_model extends CI_Model
 			$sex = 'male';
 
 		// looking up opposite sex friends.
-		$query = 'SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND sex != "' . $sex . '"';
+		$query = 'SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND sex = "' . $sex . '"';
 		$friend_response = $this->fb->run_fql_query($query);
 
 		$ids = array();
