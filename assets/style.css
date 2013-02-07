@@ -9713,6 +9713,7 @@ body#frontpage {
   -moz-border-radius: 10px;
   border-radius: 10px;
   color: white;
+  text-align: center;
 }
 
 #frontpage #login-bar {
