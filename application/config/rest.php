@@ -10,7 +10,7 @@
 |	Default: xml
 |
 */
-$config['rest_default_format'] = 'xml';
+$config['rest_default_format'] = 'json';
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ $config['rest_default_format'] = 'xml';
 |	Default: false
 |
 */
-$config['enable_emulate_request'] = TRUE;
+$config['enable_emulate_request'] = FALSE;
 
 
 /*
@@ -287,7 +287,10 @@ $config['rest_ignore_http_accept'] = FALSE;
 |	FALSE
 |
 */
-$config['rest_ajax_only'] = FALSE;
+
+$config['rest_ajax_only'] = TRUE;
+if (ENVIRONMENT == 'development')
+	$config['rest_ajax_only'] = FALSE;
 
 /* End of file config.php */
 /* Location: ./system/application/config/rest.php */
