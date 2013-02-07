@@ -32,6 +32,14 @@ class Fb {
       $this->sdk = new Facebook($credentials);
    }
 
+   function get_user()
+   {
+      $query = 'SELECT uid, name, sex, email, pic_square FROM user WHERE uid = me()';
+      $response = $this->run_fql_query($query);
+
+      return $response[0];
+   }
+
    function is_logged_in()
    {
       $user = $this->sdk->getUser();

@@ -8,4 +8,9 @@ class Crush extends REST_Controller
 		$this->load->model('crushes_model');
 	}
 
+	function index_post()
+	{
+
+	}
+
 }

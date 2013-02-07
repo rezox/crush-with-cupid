@@ -42,7 +42,7 @@ $config['cdn_url']	= '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -389,6 +389,10 @@ function __autoload($class)
   		@include_once( APPPATH . 'core/'. $class . EXT );
  	}
 }
+
+/*
+ *
+ */
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
