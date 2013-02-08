@@ -17,7 +17,7 @@ class Login extends CI_Controller
 		$user = $this->fb->get_user();
 
 		$this->load->model('users_model');
-		if (!$this->users_model->find_by_fbid($user['uid']))
+		if (!$this->users_model->find($user['uid']))
 			$this->users_model->add($user);
 
 		return redirect('/choose', 'refresh');
