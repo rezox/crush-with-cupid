@@ -27,8 +27,6 @@ class Migration_users extends CI_Migration
 		$this->dbforge->add_field($fields);
 		$this->dbforge->add_key('fbid', TRUE);
 		$this->dbforge->create_table('users');
-		$this->db->query("CREATE UNIQUE INDEX `fbid` ON `users` (`fbid`)");
-
 	}
 
 	function down()

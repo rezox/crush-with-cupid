@@ -15,12 +15,6 @@ class Fb {
       $this->secret = $ci->config->item('fb_secret');
       $this->scope = $ci->config->item('fb_scope');
 
-      //load the library
-      $this->load();
-   }
-
-   private function load()
-   {
       require_once 'facebook-php-sdk/src/facebook.php';
 
       $credentials = array(
@@ -42,6 +36,7 @@ class Fb {
 
    function is_logged_in()
    {
+      // die($this->sdk->getUser());
       $user = $this->sdk->getUser();
       if ($user)
          return true;
@@ -52,8 +47,8 @@ class Fb {
    function get_auth_url($uri)
    {
       $params = array(
+         'scope' => $this->scope,
          'redirect_uri' => $uri,
-         'scope' => $this->scope
       );
 
       if ($this->is_logged_in())
