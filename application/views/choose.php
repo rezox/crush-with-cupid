@@ -1,4 +1,4 @@
-<body id="choose">
+<div id="choose">
 	<div class="container">
 		<div id="heading">
 			<h1>Got a crush on a friend?</h1>
@@ -10,4 +10,4 @@
 			$(document).ready(function() { var choose = new Choose(); });
 		</script>
 	</div>
-</body>
+</div>
