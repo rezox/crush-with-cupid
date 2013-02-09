@@ -1,7 +1,13 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans|Reenie+Beanie);
+
 /**
  * This is the base LESS file, which imports everything
  * you'll need. You shouldn't need to modify this file
  * unless you want to breakout your LESS files.
+ */
+
+/**
+ * Google Fonts
  */
 
 /**
@@ -9733,4 +9739,87 @@ body#frontpage {
   margin-right: 10px;
   padding-bottom: 3px;
   vertical-align: middle;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  background-color: #353535;
+  width: 100%;
+  margin-top: 10px;
+  color: white;
+}
+
+#header .inner {
+  display: inline-block;
+}
+
+#header #logo {
+  margin: 15px 35px;
+  float: left;
+}
+
+#header #nav {
+  margin-right: 20px;
+  text-transform: uppercase;
+  float: right;
+}
+
+#header #nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#header #nav ul li {
+  margin-left: 15px;
+  margin-right: 15px;
+  display: inline;
+  line-height: 50px;
+  vertical-align: middle;
+}
+
+#choose {
+  text-align: center;
+}
+
+#choose #heading h1 {
+  font-family: 'Droid Sans', sans-serif;
+  color: #25abe0;
+  size: 48pt;
+}
+
+#choose #heading p {
+  color: #888888;
+  size: 36px;
+}
+
+#choose #friends .friend {
+  margin: 10px;
+  background-color: #eaeaea;
+  -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.36);
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.36);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.36);
+  /* For IE 8 */
+
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=130, Color='#000000')";
+  /* For IE 5.5 - 7 */
+
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=130, Color='#000000');
+  width: 18%;
+  display: inline-block;
+  color: #888888;
+}
+
+#choose #friends .friend .content {
+  margin: 15px;
+}
+
+#choose #friends .friend .content p {
+  margin-top: 5px;
+  line-height: 24px;
+}
+
+#choose #friends div img {
+  width: 100%;
 }
