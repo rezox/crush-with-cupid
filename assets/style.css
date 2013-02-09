@@ -2909,7 +2909,7 @@ table th[class*="span"],
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../import/twitter-bootstrap/img/glyphicons-halflings.png");
+  background-image: url("import/twitter-bootstrap/img/glyphicons-halflings.png");
   background-position: 14px 14px;
   background-repeat: no-repeat;
   margin-top: 1px;
@@ -2930,7 +2930,7 @@ table th[class*="span"],
 .dropdown-menu > .active > a > [class*=" icon-"],
 .dropdown-submenu:hover > a > [class^="icon-"],
 .dropdown-submenu:hover > a > [class*=" icon-"] {
-  background-image: url("../import/twitter-bootstrap/img/glyphicons-halflings-white.png");
+  background-image: url("import/twitter-bootstrap/img/glyphicons-halflings-white.png");
 }
 
 .icon-glass {
@@ -8782,8 +8782,8 @@ a.badge:hover {
 
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../import/font-awesome/font/fontawesome-webfont.eot');
-  src: url('../import/font-awesome/font/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('../import/font-awesome/font/fontawesome-webfont.woff') format('woff'), url('../import/font-awesome/font/fontawesome-webfont.ttf') format('truetype'), url('../import/font-awesome/font/fontawesome-webfont.svg#FontAwesome') format('svg');
+  src: url('import/font-awesome/font/fontawesome-webfont.eot');
+  src: url('import/font-awesome/font/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('import/font-awesome/font/fontawesome-webfont.woff') format('woff'), url('import/font-awesome/font/fontawesome-webfont.ttf') format('truetype'), url('import/font-awesome/font/fontawesome-webfont.svg#FontAwesome') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -9703,17 +9703,11 @@ ul.icons li .icon-large:before {
  * Imports your own custom CSS.
  */
 
-#frontpage {
-  background-color: black;
-  background: url(img/background.jpg);
-}
-
 #frontpage #center {
   background: rgba(0, 0, 0, 0.6);
   height: 400px;
   width: 500px;
   margin: 0 auto;
-  margin-top: 100px;
   padding: 50px 100px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -9792,7 +9786,7 @@ ul.icons li .icon-large:before {
 #choose #heading h1 {
   font-family: 'Oxygen', sans-serif;
   color: #25abe0;
-  font-size: 46px;
+  font-size: 38px;
 }
 
 #choose #heading p {
@@ -9802,6 +9796,7 @@ ul.icons li .icon-large:before {
 
 #choose #friends .friend {
   margin: 10px;
+  margin-bottom: 15px;
   background-color: #eaeaea;
   -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.36);
   -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.36);
@@ -9824,6 +9819,26 @@ ul.icons li .icon-large:before {
 #choose #friends .friend .content p {
   margin-top: 5px;
   line-height: 24px;
+}
+
+#choose #friends .friend .content a {
+  padding: 2px 40px;
+  background-color: #f64956;
+  color: white;
+  text-decoration: none;
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 28px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  vertical-align: middle;
+}
+
+#choose #friends .friend .content a .icon-heart {
+  background-position: -1000px;
+  margin-right: 10px;
+  font-size: 18px;
+  vertical-align: middle;
 }
 
 #choose #friends div img {

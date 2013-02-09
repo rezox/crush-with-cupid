@@ -9,3 +9,6 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() { var frontpage = new Frontpage(); });
+</script>

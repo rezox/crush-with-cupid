@@ -1,8 +1,8 @@
 <div id="choose">
 	<div class="container">
 		<div id="heading">
-			<h1>Got a crush on a friend?</h1>
-			<p>Just in time for Valentine’s Day, here's your risk-free way to see if they're crushin' too.</p>
+			<h1>Does your Valentine's Day crush have a crush on you too?</h1>
+			<p>Here's your risk-free way to find out. </p>
 		</div>
 
 		<div class="row" id="friends"></div>

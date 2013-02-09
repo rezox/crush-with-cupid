@@ -12,4 +12,4 @@ class Choose
 		data.forEach(@renderOne)
 
 	renderOne: (data) ->
-		$('#friends').append("<div class='friend' data-fbid='#{data.name}''><div class='content'><img src='#{data.pic_square}' /><p>#{data.name}</p></div></div>");
+		$('#friends').append("<div class='friend' data-fbid='#{data.name}''><div class='content'><img src='#{data.pic_square}' /><p>#{data.name}</p><a class='pick'><i class='icon-heart'></i>Crush</a></div></div>");
