@@ -9703,36 +9703,65 @@ ul.icons li .icon-large:before {
  * Imports your own custom CSS.
  */
 
+html {
+  height: 100%;
+}
+
 #frontpage #center {
-  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
   height: 400px;
   width: 500px;
-  margin: 0 auto;
-  padding: 50px 100px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  margin-top: 20px;
+  -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.75);
+  /* For IE 8 */
+
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=130, Color='#000000')";
+  /* For IE 5.5 - 7 */
+
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=130, Color='#000000');
   color: white;
   text-align: center;
+}
+
+#frontpage #center h1 {
+  font-family: 'Oxygen', sans-serif;
+  font-weight: 300;
+  font-size: 28px;
+  margin: 30px 30px;
+}
+
+#frontpage #center h1 .highlight {
+  color: #f64956;
+}
+
+#frontpage #center p {
+  font: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin: 0 50px;
+  margin-bottom: 10px;
 }
 
 #frontpage #login-bar {
   position: relative;
   text-align: center;
   bottom: 0;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
-#frontpage #fb-login {
-  height: 32px;
+#frontpage #login-bar p {
+  font: 'Helvetica Light', 'Helvetica', Arial, sans-serif;
+  font-weight: 100;
+  font-size: 11px;
 }
 
-#frontpage #fb-login img {
-  width: 32px;
-  height: 32px;
-  margin-right: 10px;
-  padding-bottom: 3px;
-  vertical-align: middle;
+#frontpage #login-bar p a {
+  color: white;
+  text-decoration: underline;
 }
 
 #header {
@@ -9779,22 +9808,35 @@ ul.icons li .icon-large:before {
   vertical-align: middle;
 }
 
-#choose {
+#header #nav ul a {
+  color: white;
+}
+
+#header #nav ul a:hover {
+  text-decoration: underline;
+}
+
+#header #nav ul a.active {
+  color: #25abe0;
+}
+
+#search {
   text-align: center;
 }
 
-#choose #heading h1 {
+#search #heading h1 {
   font-family: 'Oxygen', sans-serif;
   color: #25abe0;
   font-size: 38px;
+  font-weight: 300;
 }
 
-#choose #heading p {
+#search #heading p {
   color: #888888;
   font-size: 16px;
 }
 
-#choose #friends .friend {
+#search #friends .friend {
   margin: 10px;
   margin-bottom: 15px;
   background-color: #eaeaea;
@@ -9812,18 +9854,18 @@ ul.icons li .icon-large:before {
   color: #888888;
 }
 
-#choose #friends .friend .content {
+#search #friends .friend .content {
   margin: 15px;
 }
 
-#choose #friends .friend .content p {
+#search #friends .friend .content p {
   margin-top: 5px;
   line-height: 24px;
 }
 
-#choose #friends .friend .content a {
+#search #friends .friend .content a {
   padding: 2px 40px;
-  background-color: #f64956;
+  background-color: #25abe0;
   color: white;
   text-decoration: none;
   font-family: 'Reenie Beanie', cursive;
@@ -9834,13 +9876,13 @@ ul.icons li .icon-large:before {
   vertical-align: middle;
 }
 
-#choose #friends .friend .content a .icon-heart {
+#search #friends .friend .content a .icon-heart {
   background-position: -1000px;
   margin-right: 10px;
   font-size: 18px;
   vertical-align: middle;
 }
 
-#choose #friends div img {
+#search #friends div img {
   width: 100%;
 }

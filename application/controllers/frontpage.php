@@ -12,12 +12,10 @@ class Frontpage extends CI_Controller
 	function index()
 	{
 		if ($this->fb->is_logged_in())
-			return redirect('/choose', 'refresh');
+			return redirect('/search', 'refresh');
 
 		$this->load->view('include/header');
-		$this->load->view('frontpage', array(
-			'facebook_auth_url' => $this->fb->get_auth_url(site_url('/login'))
-		));
+		$this->load->view('frontpage');
 		$this->load->view('include/footer');
 	}
 

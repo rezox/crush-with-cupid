@@ -9,10 +9,12 @@
 	<title>Crush With Friends</title>
 
 	<link href="assets/style.css" rel="stylesheet" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.png">
 
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-   <script src="assets/app.js"></script>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+	<script src="assets/app.js"></script>
 </head>
 <body>
 	<div id="header">
@@ -21,9 +23,11 @@
 		</div>
 		<div class="inner" id="nav">
 			<ul>
-				<li>how we do it</li>
-				<li>share</li>
-				<li>logout</li>
+				<li><a href="<?= site_url('/how') ?>">how we do it</a></li>
+				<? if(is_logged_in()): ?>
+					<li>share</li>
+					<li><a href="<?= get_auth_url(site_url('/logout')) ?>">logout</a></li>
+				<? endif; ?>
 			</ul>
 		</div>
 	</div>

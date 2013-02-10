@@ -26,6 +26,26 @@ class Fb {
       $this->sdk = new Facebook($credentials);
    }
 
+   function clear_session()
+   {
+      $this->sdk->destroySession();
+
+      // // get your api key 
+      // $apiKey = $this->sdk->getAppId();
+      // // get name of the cookie 
+      // $cookie = $this->sdk->getSignedRequestCookieName();
+
+      // $cookies = array('user', 'session_key', 'expires', 'ss'); 
+      // foreach ($cookies as $name)  
+      // { 
+      //    setcookie($apiKey . '_' . $name, false, time() - 3600); 
+      //    unset($_COOKIE[$apiKey . '_' . $name]); 
+      // } 
+
+      // setcookie($apiKey, false, time() - 3600); 
+      // unset($_COOKIE[$apiKey]);      
+   }
+
    function get_user()
    {
       $query = 'SELECT uid, name, sex, email, pic_square FROM user WHERE uid = me()';
@@ -46,15 +66,13 @@ class Fb {
 
    function get_auth_url($uri)
    {
-      $params = array(
+      if ($this->is_logged_in())
+         return $this->sdk->getLogoutUrl(array('next' => $uri));
+
+      return $this->sdk->getLoginUrl(array(
          'scope' => $this->scope,
          'redirect_uri' => $uri,
-      );
-
-      if ($this->is_logged_in())
-         return $this->sdk->getLogoutUrl($params);
-
-      return $this->sdk->getLoginUrl($params);
+      ));
    }
 
    function run_fql_query($query)

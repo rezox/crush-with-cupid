@@ -1,6 +1,6 @@
 <?php
 
-class Choose extends CI_Controller
+class Search extends CI_Controller
 {
 
 	function __construct()
@@ -15,7 +15,7 @@ class Choose extends CI_Controller
 			return redirect('/', 'refresh');
 
 		$this->load->view('include/header');
-		$this->load->view('choose');
+		$this->load->view('search');
 		$this->load->view('include/footer');
 	}
 

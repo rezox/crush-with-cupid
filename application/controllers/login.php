@@ -20,7 +20,7 @@ class Login extends CI_Controller
 		if (!$this->users_model->find($user['uid']))
 			$this->users_model->add($user);
 
-		return redirect('/choose', 'refresh');
+		return redirect('/search', 'refresh');
 	}
 
 }

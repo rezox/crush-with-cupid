@@ -1,4 +1,4 @@
-class Choose
+class Search
 	constructor: ->
 		@populate()
 
