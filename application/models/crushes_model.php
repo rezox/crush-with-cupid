@@ -53,7 +53,7 @@ class Crushes_model extends CI_Model
 
 		$query = $this->db->get();
 
-		$ids = array();
+		$ids = array('0');
 		foreach ($query->result_array() as $row)
 			$ids[] = $row['to'];
 
