@@ -6,8 +6,31 @@
 		</div>
 
 		<div class="row" id="friends"></div>
-		<script type="text/javascript">
-			$(document).ready(function() { var search = new Search(); });
+		<div id="fb-root"></div>
+		<script>
+			window.fbAsyncInit = function() {
+			    FB.init({
+					appId      : '<?= get_app_id() ?>',
+					channelUrl : '<?= base_url("channel.html") ?>',
+					status     : true,
+					cookie     : true,
+					xfbml      : true
+			    });
+
+			    FB.Event.subscribe('auth.authResponseChange', function() {
+					$(document).ready(function() { 
+						var search = new Search(); 
+					});
+			    });
+			};
+
+			(function(d, debug){
+				var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement('script'); js.id = id; js.async = true;
+				js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+				ref.parentNode.insertBefore(js, ref);
+			}(document, /*debug*/ false));
 		</script>
 	</div>
 </div>

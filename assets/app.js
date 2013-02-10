@@ -10,26 +10,48 @@ Frontpage = (function() {
 
 })();
 
-var Search;
+var Search,
+  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 Search = (function() {
 
   function Search() {
+    this.filter = __bind(this.filter, this);
+
+    var _this = this;
+    this.access_token = FB.getAuthResponse()['accessToken'];
     this.populate();
+    FB.api('/me', function(response) {
+      return _this.gender = response.gender === 'female' ? 'male' : 'female';
+    });
   }
+
+  Search.prototype.reset = function() {
+    this.friends = null;
+    return this.crushes = null;
+  };
 
   Search.prototype.populate = function() {
     var _this = this;
-    return $.ajax('/friends', {
+    this.reset();
+    $.ajax('/crushes', {
       dataType: "json",
       success: function(response) {
-        return _this.renderAll(response);
+        _this.crushes = response;
+        return _this.render();
       }
+    });
+    return FB.api({
+      method: 'fql.query',
+      query: 'SELECT uid, name, sex FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me())'
+    }, function(response) {
+      _this.friends = response;
+      return _this.render();
     });
   };
 
   Search.prototype.crush = function(fbid) {
-    return $.ajax('/crush', {
+    return $.ajax('/crushes', {
       type: 'POST',
       dataType: 'json',
       data: {
@@ -49,22 +71,42 @@ Search = (function() {
     });
   };
 
-  Search.prototype.renderAll = function(data) {
-    var _this = this;
+  Search.prototype.filter = function(friends) {
+    var filtered;
+    filtered = this.friends;
+    if (this.gender !== 'all') {
+      filtered = _.where(filtered, {
+        sex: this.gender
+      });
+    }
+    return filtered;
+  };
+
+  Search.prototype.render = function() {
+    var filtered,
+      _this = this;
+    if (!(this.friends != null) || !(this.crushes != null) || !(this.gender != null)) {
+      return;
+    }
+    filtered = this.filter();
     return $('#friends').fadeOut(function() {
-      data.forEach(_this.renderOne);
+      _.each(filtered, function(friend) {
+        var photo;
+        photo = "https://graph.facebook.com/" + friend.uid + "/picture?height=320&width=320&access_token=" + _this.access_token;
+        return _this.renderOne(friend, _.contains(_this.crushes, friend.uid), photo);
+      });
       $('#friends').fadeIn();
       return _this.bind();
     });
   };
 
-  Search.prototype.renderOne = function(data) {
+  Search.prototype.renderOne = function(friend, crush, photo) {
     var content, picked;
     picked = '';
-    if ((data.crush != null)) {
+    if (crush) {
       picked = ' picked';
     }
-    content = "<div class='friend' data-name='" + data.name + "''>				<div class='content'>					<img src='" + data.pic_square + "' />					<p>" + data.name + "</p>					<a data-uid='" + data.uid + "' class='pick" + picked + "'><i class='icon-heart'></i>Crush</a>				</div>			</div>";
+    content = "<div class='friend' data-name='" + friend.name + "''>				<div class='content'>					<img src='" + photo + "' />					<p>" + friend.name + "</p>					<a data-uid='" + friend.uid + "' class='pick" + picked + "'><i class='icon-heart'></i>Crush</a>				</div>			</div>";
     return $('#friends').append(content);
   };
 

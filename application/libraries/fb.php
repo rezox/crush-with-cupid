@@ -88,4 +88,9 @@ class Fb {
       return $this->sdk->getAccessToken();
    }
 
+   function get_app_id()
+   {
+      return $this->appid;
+   }
+
 }

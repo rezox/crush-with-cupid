@@ -11,12 +11,12 @@
 	<link href="assets/style.css" rel="stylesheet" />
 	<link rel="icon" type="image/png" href="assets/img/favicon.png">
 
-
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.0.0-rc.3/lodash.min.js"></script>
 	<script src="assets/app.js"></script>
 </head>
-<body>
+<body>	
 	<div id="header">
 		<div class="inner" id="logo">
 			<img src="<?= base_url('assets/img/header-logo.png') ?>" />

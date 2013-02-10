@@ -1,15 +1,33 @@
 class Search
 	constructor: ->
+		@access_token = FB.getAuthResponse()['accessToken']
 		@populate()
 
+		FB.api '/me', (response) =>
+			@gender = if response.gender is 'female' then 'male' else 'female' 
+
+	reset: ->
+		@friends = null
+		@crushes = null
+
 	populate: ->
-		$.ajax '/friends'
+		@reset()
+
+		$.ajax '/crushes'
 			dataType: "json"
 			success: (response) =>
-				@renderAll(response)
+				@crushes = response
+				@render()
+
+		FB.api
+			method: 'fql.query',
+			query: 'SELECT uid, name, sex FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me())'
+			(response) =>
+				@friends = response
+				@render()
 
 	crush: (fbid) ->
-		$.ajax '/crush'
+		$.ajax '/crushes'
 			type: 'POST'
 			dataType: 'json'
 			data: 
@@ -22,23 +40,37 @@ class Search
 			that.crush(uid)
 			$(this).addClass('picked');
 
+	filter: (friends) =>
+		filtered = @friends
+		if @gender != 'all'
+			filtered = _.where(filtered, {sex: @gender});
 
-	renderAll: (data) ->
+		filtered
+
+	render: () ->
+		if not @friends? or not @crushes? or not @gender?
+			return
+
+		filtered = @filter()
+
 		$('#friends').fadeOut =>
-			data.forEach(@renderOne)
+			_.each filtered, (friend) =>
+				photo = "https://graph.facebook.com/#{friend.uid}/picture?height=320&width=320&access_token=#{@access_token}"
+				@renderOne(friend, _.contains(@crushes, friend.uid), photo)
+			
 			$('#friends').fadeIn()
 			@bind()
 
-	renderOne: (data) ->
+	renderOne: (friend, crush, photo) ->
 		picked = ''
-		if (data.crush?)
+		if (crush)
 			picked = ' picked';
 
-		content = "<div class='friend' data-name='#{data.name}''>
+		content = "<div class='friend' data-name='#{friend.name}''>
 				<div class='content'>
-					<img src='#{data.pic_square}' />
-					<p>#{data.name}</p>
-					<a data-uid='#{data.uid}' class='pick#{picked}'><i class='icon-heart'></i>Crush</a>
+					<img src='#{photo}' />
+					<p>#{friend.name}</p>
+					<a data-uid='#{friend.uid}' class='pick#{picked}'><i class='icon-heart'></i>Crush</a>
 				</div>
 			</div>";
 		$('#friends').append(content);

@@ -1,5 +1,5 @@
 <?php
-class Crush extends REST_Controller
+class Crushes extends REST_Controller
 {
 
 	function __construct()
@@ -7,6 +7,14 @@ class Crush extends REST_Controller
 		parent::__construct();
 		$this->load->library('fb');
 		$this->load->model('crushes_model');
+	}
+
+	function index_get()
+	{
+		$user = $this->fb->get_user();
+		$user = $user['uid'];
+
+		$this->response($this->crushes_model->get($user));
 	}
 
 	function index_post()
