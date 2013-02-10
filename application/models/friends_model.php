@@ -38,19 +38,20 @@ class Friends_model extends CI_Model
 		// deassoc. high memory, but faster
 		$ids = array();
 		$assoc = array();
-		foreach ($friend_response as $key => $value)
+		foreach ($friend_response as $key => &$value)
 		{
 			$ids[] = $value['uid'];
 			$assoc[$value['uid']] = $key;
+			$value['pic_square'] = 'https://graph.facebook.com/' . $value['uid'] . '/picture?width=320&height=320&access_token=' . $this->fb->get_access_token();
 		}
 
 		// we need to get their square photos too
-		$query = 'SELECT id, url FROM square_profile_pic WHERE id IN (' . implode(',', $ids) . ') AND size = 320';
-		$picture_response = $this->fb->run_fql_query($query);
+		// $query = 'SELECT id, url FROM square_profile_pic WHERE id IN (' . implode(',', $ids) . ') AND size = 320';
+		// $picture_response = $this->fb->run_fql_query($query);
 
-		foreach ($picture_response as $picture)
-			$friend_response[$assoc[$picture['id']]]['pic_square'] = $picture['url'];
-		
+		// foreach ($picture_response as $picture)
+		// 	$friend_response[$assoc[$picture['id']]]['pic_square'] = $picture['url'];
+
 		// lets see if they are a crush already.
 		$this->db->where('from', $me)
 			->from('crushes')

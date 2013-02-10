@@ -83,4 +83,9 @@ class Fb {
       ));
    }
 
+   function get_access_token()
+   {
+      return $this->sdk->getAccessToken();
+   }
+
 }

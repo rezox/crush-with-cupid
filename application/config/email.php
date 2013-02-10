@@ -19,12 +19,13 @@ $config['smtp_user'] = '';
 $config['smtp_pass'] = '';
 
 /*
- * Heroku Sendgrid information.
+ * Mail.
  */
-/*
-$config['protocol'] = 'smtp';
-$config['smtp_host'] = 'smtp.sendgrid.net';
-$config['smtp_port'] = 587;
-$config['smtp_user'] = $_SERVER['SENDGRID_USERNAME'];
-$config['smtp_pass'] = $_SERVER['SENDGRID_PASSWORD'];
-*/
+if (ENVIRONMENT != 'development')
+{
+	$config['protocol'] = 'smtp';
+	$config['smtp_host'] = 'smtp.mandrillapp.com';
+	$config['smtp_port'] = 587;
+	$config['smtp_user'] = $_SERVER['MANDRILL_USERNAME'];
+	$config['smtp_pass'] = $_SERVER['MANDRILL_APIKEY'];
+}
