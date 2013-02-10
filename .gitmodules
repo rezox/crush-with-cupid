@@ -7,3 +7,6 @@
 [submodule "application/libraries/facebook-php-sdk"]
 	path = application/libraries/facebook-php-sdk
 	url = https://github.com/facebook/facebook-php-sdk.git
+[submodule "assets/import/isotope"]
+	path = assets/import/isotope
+	url = https://github.com/desandro/isotope.git
