@@ -70,7 +70,8 @@ Search = (function() {
       var uid;
       uid = $(this).attr('data-uid');
       that.crush(uid);
-      return $(this).addClass('picked');
+      $(this).addClass('picked');
+      return $(this).parent('.friend').addClass('picked');
     });
   };
 

@@ -39,7 +39,7 @@ class Crushes_model extends CI_Model
 		$this->db->where('from', $from)
 			->where('to', $to);
 
-		if ($this->db->count_all('crushes'))
+		if ($this->db->count_all_results('crushes'))
 			return true;
 
 		return false;

@@ -17,8 +17,8 @@ class Migration_crushes extends CI_Migration
 		);
 
 		$this->dbforge->add_field($fields);
-		$this->dbforge->add_key('from', TRUE);
-		$this->dbforge->add_key('to', TRUE);
+		$this->dbforge->add_key('from', FALSE);
+		$this->dbforge->add_key('to', FALSE);
 		$this->dbforge->create_table('crushes');
 
 	}

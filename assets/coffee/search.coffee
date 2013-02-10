@@ -41,6 +41,7 @@ class Search
 			uid = $(this).attr('data-uid');
 			that.crush(uid)
 			$(this).addClass('picked');
+			$(this).parent('.friend').addClass('picked');
 
 	filter: (friends) =>
 		filtered = @friends
