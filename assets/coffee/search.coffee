@@ -18,6 +18,8 @@ class Search
 			success: (response) =>
 				@crushes = response
 				@render()
+			error: =>
+				@crushes = []
 
 		FB.api
 			method: 'fql.query',

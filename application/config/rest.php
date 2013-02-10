@@ -288,9 +288,9 @@ $config['rest_ignore_http_accept'] = TRUE;
 |
 */
 
-$config['rest_ajax_only'] = FALSE;
-// if (ENVIRONMENT == 'development')
-// 	$config['rest_ajax_only'] = FALSE;
+$config['rest_ajax_only'] = TRUE;
+if (ENVIRONMENT == 'development')
+	$config['rest_ajax_only'] = FALSE;
 
 /* End of file config.php */
 /* Location: ./system/application/config/rest.php */

@@ -27,6 +27,9 @@ Search = (function() {
       success: function(response) {
         _this.crushes = response;
         return _this.render();
+      },
+      error: function() {
+        return _this.crushes = [];
       }
     });
     return FB.api({
