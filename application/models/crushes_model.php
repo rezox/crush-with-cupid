@@ -37,13 +37,27 @@ class Crushes_model extends CI_Model
 	function exists($from, $to)
 	{
 		$this->db->where('from', $from)
-			->where('to', $to)
-			->from('crushes');
+			->where('to', $to);
 
-		if ($this->db->count_all())
+		if ($this->db->count_all('crushes'))
 			return true;
 
 		return false;
+	}
+
+	function get($user)
+	{
+		$this->db->where('from', $user)
+			->from('crushes')
+			->select('to');
+
+		$query = $this->db->get();
+
+		$ids = array();
+		foreach ($query->result_array() as $row)
+			$ids[] = $row['to'];
+
+		return $ids;
 	}
 
 }

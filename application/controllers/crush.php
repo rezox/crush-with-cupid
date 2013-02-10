@@ -11,8 +11,11 @@ class Crush extends REST_Controller
 
 	function index_post()
 	{
-		$from = $this->post('from');
+		// $from = $this->post('from');
 		$to = $this->post('to');
+
+		$user = $this->fb->get_user();
+		$from = $user['uid'];
 
 		if (empty($from) || empty($to))
 			return $this->response(array('error' => 'Parameters missing.'), 400);

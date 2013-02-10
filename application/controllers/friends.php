@@ -11,7 +11,7 @@ class Friends extends REST_Controller
 
 	function index_get()
 	{
-		$this->response($this->friends_model->lookup_opposite_sex_friends());
+		$this->response($this->friends_model->lookup());
 	}
 
 }

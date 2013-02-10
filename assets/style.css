@@ -9876,6 +9876,10 @@ html {
   vertical-align: middle;
 }
 
+#search #friends .friend .content a.picked {
+  background-color: #f64956;
+}
+
 #search #friends .friend .content a .icon-heart {
   background-position: -1000px;
   margin-right: 10px;
