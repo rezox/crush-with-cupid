@@ -10,8 +10,9 @@
 			<img id="male" data-filter="male" src="<?= base_url('assets/img/guy.png') ?>" />
 			<img id="female" data-filter="female" src="<?= base_url('assets/img/girl.png') ?>" />
 		</div>
-		<div class="row" id="friends"></div>
-		<div id="loading-indicator"></div>
+		<div class="row" id="friends">
+			<div id="loading-indicator"></div>
+		</div>
 		<div id="fb-root"></div>
 		<script>
 			$(document).ready(function() {
@@ -22,10 +23,10 @@
 				  radius: 10, // The radius of the inner circle
 				  corners: 1, // Corner roundness (0..1)
 				  rotate: 0, // The rotation offset
-				  color: '#000', // #rgb or #rrggbb
-				  speed: 1, // Rounds per second
+				  color: '#888', // #rgb or #rrggbb
+				  speed: 2, // Rounds per second
 				  trail: 60, // Afterglow percentage
-				  shadow: true, // Whether to render a shadow
+				  shadow: false, // Whether to render a shadow
 				  hwaccel: false, // Whether to use hardware acceleration
 				  className: 'spinner', // The CSS class to assign to the spinner
 				  zIndex: 2e9, // The z-index (defaults to 2000000000)

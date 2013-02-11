@@ -9882,6 +9882,7 @@ html {
 
 #search #loading-indicator {
   margin-top: 80px;
+  margin-left: 25px;
 }
 
 #search #heading h1 {
