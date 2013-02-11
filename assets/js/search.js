@@ -12,7 +12,8 @@ Search = (function() {
     this.access_token = FB.getAuthResponse()['accessToken'];
     this.populate();
     FB.api('/me', function(response) {
-      return _this.filterBy = response.gender === 'female' ? 'male' : 'female';
+      _this.filterBy = response.gender === 'female' ? 'male' : 'female';
+      return _this.render();
     });
   }
 

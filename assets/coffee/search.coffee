@@ -5,6 +5,7 @@ class Search
 
 		FB.api '/me', (response) =>
 			@filterBy = if response.gender is 'female' then 'male' else 'female' 
+			@render()
 
 	reset: ->
 		@friends = null
