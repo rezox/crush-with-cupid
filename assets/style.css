@@ -10236,7 +10236,7 @@ html {
 #search #heading h1 {
   font-family: 'Oxygen', sans-serif;
   color: #25abe0;
-  font-size: 38px;
+  font-size: 34px;
   font-weight: 300;
 }
 
@@ -10253,6 +10253,12 @@ html {
   text-align: left;
   font-size: 16px;
   text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  #search #filters {
+    text-align: center;
+  }
 }
 
 #search #filters .gender {
