@@ -32,4 +32,17 @@ class Crushes extends REST_Controller
 		return $this->response(array('success' => 'Added.'));
 	}
 
+	function index_delete()
+	{
+		$to = $this->delete('to');
+
+		$user = $this->fb->get_user();
+		$from = $user['uid'];
+
+		if (empty($from) || empty($to))
+			return $this->response(array('error' => 'Parameters missing.'), 400);
+
+		$this->crushes_model->remove($from, $to);
+		return $this->response(array('success' => 'Removed.'));
+	}
 }

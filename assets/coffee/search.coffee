@@ -28,9 +28,22 @@ class Search
 				@friends = response
 				@render()
 
-	crush: (fbid) ->
+	add: (fbid) =>
+		@crushes.push(fbid);
+		console.log(@crushes)
+
 		$.ajax '/crushes'
 			type: 'POST'
+			dataType: 'json'
+			data: 
+				to: fbid
+
+	remove: (fbid) ->
+		@crushes.splice(_.indexOf(@crushes, fbid), 1)
+		console.log(@crushes)
+
+		$.ajax '/crushes'
+			type: 'DELETE'
 			dataType: 'json'
 			data: 
 				to: fbid
@@ -38,10 +51,13 @@ class Search
 	bind: ->
 		that = this;
 		$('.pick').click ->
-			uid = $(@).attr('data-uid');
-			that.crush(uid)
-			$(@).addClass('picked');
-			$(@).parent('.friend').addClass('picked');
+			fbid = $(@).attr('data-uid');
+			if (_.contains(that.crushes, fbid))
+				$(@).removeClass('picked');
+				that.remove(fbid)
+			else
+				$(@).addClass('picked');
+				that.add(fbid)
 
 		$('#filters img, #filters #all, #filters i').click ->
 			filterBy = $(@).attr('data-filter')

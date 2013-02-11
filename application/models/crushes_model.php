@@ -60,4 +60,15 @@ class Crushes_model extends CI_Model
 		return $ids;
 	}
 
+	function remove($from, $to)
+	{
+		if (!$this->exists($from, $to))
+			return;
+
+		$this->db->where('from', $from)
+			->where('to', $to);
+
+		$this->db->delete('crushes');
+	}
+
 }

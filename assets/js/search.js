@@ -6,6 +6,8 @@ Search = (function() {
   function Search() {
     this.filter = __bind(this.filter, this);
 
+    this.add = __bind(this.add, this);
+
     var _this = this;
     this.access_token = FB.getAuthResponse()['accessToken'];
     this.populate();
@@ -41,9 +43,23 @@ Search = (function() {
     });
   };
 
-  Search.prototype.crush = function(fbid) {
+  Search.prototype.add = function(fbid) {
+    this.crushes.push(fbid);
+    console.log(this.crushes);
     return $.ajax('/crushes', {
       type: 'POST',
+      dataType: 'json',
+      data: {
+        to: fbid
+      }
+    });
+  };
+
+  Search.prototype.remove = function(fbid) {
+    this.crushes.splice(_.indexOf(this.crushes, fbid), 1);
+    console.log(this.crushes);
+    return $.ajax('/crushes', {
+      type: 'DELETE',
       dataType: 'json',
       data: {
         to: fbid
@@ -55,11 +71,15 @@ Search = (function() {
     var that;
     that = this;
     $('.pick').click(function() {
-      var uid;
-      uid = $(this).attr('data-uid');
-      that.crush(uid);
-      $(this).addClass('picked');
-      return $(this).parent('.friend').addClass('picked');
+      var fbid;
+      fbid = $(this).attr('data-uid');
+      if (_.contains(that.crushes, fbid)) {
+        $(this).removeClass('picked');
+        return that.remove(fbid);
+      } else {
+        $(this).addClass('picked');
+        return that.add(fbid);
+      }
     });
     return $('#filters img, #filters #all, #filters i').click(function() {
       var filterBy;
