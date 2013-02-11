@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="The risk-free way to see if your Valentine's Day crush has a crush on you too.">
-	<meta name="keywords" content="">
+	<meta name="keywords" content="crush,cupid,dating,valentine,anonymous">
 
 	<title>Crush With Cupid</title>
 
