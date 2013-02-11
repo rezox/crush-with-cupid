@@ -19,7 +19,7 @@ class Crushes extends REST_Controller
 
 		$crushes = $this->crushes_model->get($user);
 		$crushes[] = '0'; // hotfix
-		
+
 		$this->response($crushes);
 	}
 
@@ -39,14 +39,16 @@ class Crushes extends REST_Controller
 
 		$this->crushes_model->add($from, $to);
 
+		$response = array('success' => 'Added.');
 		if ($this->crushes_model->has_pair($from, $to))
 		{
 			// send them an email
 			
 			// respond with pair found
+			$response['paired'] = true;
 		}
 
-		return $this->response(array('success' => 'Added.'));
+		return $this->response($response);
 	}
 
 	function index_delete()

@@ -10384,15 +10384,20 @@ html {
   vertical-align: middle;
 }
 
-#search #friends .friend .content img {
+#search #friends .friend .content .photo {
   width: 190px;
   height: 190px;
+  position: relative;
+}
+
+#search #friends .friend .content .photo img {
+  width: 190px;
+  height: 190px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #search #friends .friend.picked a {
   background-color: #f64956;
-}
-
-#search #friends div img {
-  width: 100%;
 }
