@@ -10,7 +10,7 @@ Search = (function() {
     this.access_token = FB.getAuthResponse()['accessToken'];
     this.populate();
     FB.api('/me', function(response) {
-      return _this.gender = response.gender === 'female' ? 'male' : 'female';
+      return _this.filterBy = response.gender === 'female' ? 'male' : 'female';
     });
   }
 
@@ -61,22 +61,27 @@ Search = (function() {
       $(this).addClass('picked');
       return $(this).parent('.friend').addClass('picked');
     });
-    return $('#filters img, #filters #all').click(function() {
-      var gender;
-      gender = $(this).attr('data-filter');
-      if (gender !== that.gender) {
-        that.gender = gender;
+    return $('#filters img, #filters #all, #filters i').click(function() {
+      var filterBy;
+      filterBy = $(this).attr('data-filter');
+      if (filterBy !== that.filterBy) {
+        that.filterBy = filterBy;
         return that.render();
       }
     });
   };
 
   Search.prototype.filter = function(friends) {
-    var filtered;
+    var filtered,
+      _this = this;
     filtered = this.friends;
-    if (this.gender !== 'all') {
+    if (this.filterBy === 'picked') {
+      filtered = _.filter(filtered, function(friend) {
+        return _.contains(_this.crushes, friend.uid);
+      });
+    } else if (this.filterBy === 'male' || this.filterBy === 'female') {
       filtered = _.where(filtered, {
-        sex: this.gender
+        sex: this.filterBy
       });
     }
     return filtered;
@@ -85,7 +90,7 @@ Search = (function() {
   Search.prototype.render = function() {
     var filtered,
       _this = this;
-    if (!(this.friends != null) || !(this.crushes != null) || !(this.gender != null)) {
+    if (!(this.friends != null) || !(this.crushes != null) || !(this.filterBy != null)) {
       return;
     }
     filtered = this.filter();

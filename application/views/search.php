@@ -9,6 +9,7 @@
 			<span id="all" data-filter="all">all</span>
 			<img id="male" data-filter="male" src="<?= base_url('assets/img/guy.png') ?>" />
 			<img id="female" data-filter="female" src="<?= base_url('assets/img/girl.png') ?>" />
+			<i id="heart" data-filter="picked" class="icon-heart"></i>
 		</div>
 		<div class="row" id="friends">
 			<div id="loading-indicator"></div>

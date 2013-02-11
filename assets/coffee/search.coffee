@@ -4,7 +4,7 @@ class Search
 		@populate()
 
 		FB.api '/me', (response) =>
-			@gender = if response.gender is 'female' then 'male' else 'female' 
+			@filterBy = if response.gender is 'female' then 'male' else 'female' 
 
 	reset: ->
 		@friends = null
@@ -43,21 +43,25 @@ class Search
 			$(@).addClass('picked');
 			$(@).parent('.friend').addClass('picked');
 
-		$('#filters img, #filters #all').click ->
-			gender = $(@).attr('data-filter')
-			if gender != that.gender
-				that.gender = gender
+		$('#filters img, #filters #all, #filters i').click ->
+			filterBy = $(@).attr('data-filter')
+			if filterBy != that.filterBy
+				that.filterBy = filterBy
 				that.render()
 
 	filter: (friends) =>
 		filtered = @friends
-		if @gender != 'all'
-			filtered = _.where(filtered, {sex: @gender});
+
+		if @filterBy == 'picked'
+			filtered = _.filter filtered, (friend) =>
+				_.contains(@crushes, friend.uid)
+		else if @filterBy == 'male' || @filterBy == 'female'
+			filtered = _.where(filtered, {sex: @filterBy});
 
 		filtered
 
 	render: () ->
-		if not @friends? or not @crushes? or not @gender?
+		if not @friends? or not @crushes? or not @filterBy?
 			return
 
 		filtered = @filter()
