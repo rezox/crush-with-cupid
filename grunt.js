@@ -105,5 +105,5 @@ module.exports = function(grunt) {
 	});
 
 	// Default task.
-	grunt.registerTask('default', 'coffee concat recess:max');
+	grunt.registerTask('default', 'coffee min recess:min');
 };
