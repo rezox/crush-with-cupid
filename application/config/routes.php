@@ -41,5 +41,11 @@
 $route['default_controller'] = "frontpage";
 $route['404_override'] = '';
 
+$route['how'] = 'pages/display/how';
+$route['terms'] = 'pages/display/terms';
+$route['privacy'] = 'pages/display/privacy';
+
+
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
