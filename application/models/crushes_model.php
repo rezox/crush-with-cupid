@@ -45,6 +45,19 @@ class Crushes_model extends CI_Model
 		return false;
 	}
 
+	function get_pairs($user)
+	{
+		$crushes = $this->get($user);
+		$crushed_by = $this->get_on($user);
+		$pairs = array_intersect($crushes, $crushed_by);
+
+		$return = array();
+		foreach ($pairs as $pair)
+			$return[] = $pair;
+
+		return $return;
+	}
+
 	function get($user)
 	{
 		$this->db->where('from', $user)
@@ -53,11 +66,26 @@ class Crushes_model extends CI_Model
 
 		$query = $this->db->get();
 
-		$ids = array('0');
+		$ids = array();
 		foreach ($query->result_array() as $row)
 			$ids[] = $row['to'];
 
 		return $ids;
+	}
+
+	function get_on($user)
+	{
+		$this->db->where('to', $user)
+			->from('crushes')
+			->select('from');
+
+		$query = $this->db->get();
+
+		$ids = array();
+		foreach ($query->result_array() as $row)
+			$ids[] = $row['from'];
+
+		return $ids;			
 	}
 
 	function remove($from, $to)

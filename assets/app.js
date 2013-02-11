@@ -32,7 +32,8 @@ Search = (function() {
 
   Search.prototype.reset = function() {
     this.friends = null;
-    return this.crushes = null;
+    this.crushes = null;
+    return this.pairs = null;
   };
 
   Search.prototype.populate = function() {
@@ -48,6 +49,16 @@ Search = (function() {
         return _this.crushes = [];
       }
     });
+    $.ajax('/pairs', {
+      dataType: "json",
+      success: function(response) {
+        _this.pairs = response;
+        return _this.render();
+      },
+      error: function() {
+        return _this.pairs = [];
+      }
+    });
     return FB.api({
       method: 'fql.query',
       query: 'SELECT uid, name, sex FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me())'
@@ -57,7 +68,7 @@ Search = (function() {
     });
   };
 
-  Search.prototype.add = function(fbid) {
+  Search.prototype.add = function(fbid, elem) {
     this.crushes.push(fbid);
     console.log(this.crushes);
     return $.ajax('/crushes', {
@@ -65,6 +76,11 @@ Search = (function() {
       dataType: 'json',
       data: {
         to: fbid
+      },
+      success: function(response) {
+        if (response.paired != null) {
+          return elem.addClass('pair');
+        }
       }
     });
   };
@@ -85,14 +101,18 @@ Search = (function() {
     var that;
     that = this;
     $('.pick').click(function() {
-      var fbid;
+      var elem, fbid;
       fbid = $(this).attr('data-uid');
+      elem = $(this).closest(".friend");
+      if (elem.hasClass('pair')) {
+        return;
+      }
       if (_.contains(that.crushes, fbid)) {
-        $(this).closest(".friend").removeClass('picked');
+        elem.removeClass('picked');
         return that.remove(fbid);
       } else {
-        $(this).closest(".friend").addClass('picked');
-        return that.add(fbid);
+        elem.addClass('picked');
+        return that.add(fbid, elem);
       }
     });
     return $('#filters div, #filters #all, #filters i').click(function() {
@@ -126,7 +146,7 @@ Search = (function() {
   Search.prototype.render = function() {
     var filtered,
       _this = this;
-    if (!(this.friends != null) || !(this.crushes != null) || !(this.filterBy != null)) {
+    if (!(this.friends != null) || !(this.crushes != null) || !(this.filterBy != null) || !(this.pairs != null)) {
       return;
     }
     filtered = this.filter();
@@ -135,7 +155,7 @@ Search = (function() {
       _.each(filtered, function(friend) {
         var photo;
         photo = "https://graph.facebook.com/" + friend.uid + "/picture?height=320&width=320&access_token=" + _this.access_token;
-        return _this.renderOne(friend, _.contains(_this.crushes, friend.uid), photo);
+        return _this.renderOne(friend, _.contains(_this.crushes, friend.uid), _.contains(_this.pairs, friend.uid), photo);
       });
       $('#filters').fadeIn();
       return $('#friends').fadeIn(function() {
@@ -144,13 +164,17 @@ Search = (function() {
     });
   };
 
-  Search.prototype.renderOne = function(friend, crush, photo) {
-    var content, picked;
+  Search.prototype.renderOne = function(friend, has_crush, is_pair, photo) {
+    var content, pair, picked;
     picked = '';
-    if (crush) {
+    if (has_crush) {
       picked = 'picked';
     }
-    content = ("<div class='friend " + picked + "'>") + "<div class='content'>" + ("<img src='" + photo + "' />") + ("<p>" + friend.name + "</p>") + ("<a data-uid='" + friend.uid + "' class='pick " + picked + "'><i class='icon-heart'></i>Crush</a>") + "</div>" + "</div>";
+    pair = '';
+    if (is_pair) {
+      pair = 'pair';
+    }
+    content = ("<div class='friend " + picked + " " + pair + "'>") + "<div class='content'>" + ("<img src='" + photo + "' />") + ("<p>" + friend.name + "</p>") + ("<a data-uid='" + friend.uid + "' class='pick " + picked + "'><i class='icon-heart'></i>Crush</a>") + "</div>" + "</div>";
     return $('#friends').append(content);
   };
 

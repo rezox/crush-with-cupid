@@ -11,6 +11,7 @@ class Search
 	reset: ->
 		@friends = null
 		@crushes = null
+		@pairs = null
 
 	populate: ->
 		@reset()
@@ -23,6 +24,14 @@ class Search
 			error: =>
 				@crushes = []
 
+		$.ajax '/pairs'
+			dataType: "json"
+			success: (response) =>
+				@pairs = response
+				@render()
+			error: =>
+				@pairs = []
+
 		FB.api
 			method: 'fql.query',
 			query: 'SELECT uid, name, sex FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me())'
@@ -30,7 +39,7 @@ class Search
 				@friends = response
 				@render()
 
-	add: (fbid) =>
+	add: (fbid, elem) =>
 		@crushes.push(fbid);
 		console.log(@crushes)
 
@@ -39,6 +48,10 @@ class Search
 			dataType: 'json'
 			data: 
 				to: fbid
+			success: (response) ->
+				if response.paired?
+					elem.addClass('pair')
+
 
 	remove: (fbid) ->
 		@crushes.splice(_.indexOf(@crushes, fbid), 1)
@@ -54,14 +67,17 @@ class Search
 		that = this;
 		$('.pick').click ->
 			fbid = $(@).attr('data-uid');
+			elem = $(@).closest(".friend")
+
+			if elem.hasClass('pair')
+				return
+
 			if (_.contains(that.crushes, fbid))
-				# $(@).removeClass('picked');
-				$(@).closest(".friend").removeClass('picked');
+				elem.removeClass('picked');
 				that.remove(fbid)
 			else
-				# $(@).addClass('picked');
-				$(@).closest(".friend").addClass('picked');
-				that.add(fbid)
+				elem.addClass('picked');
+				that.add(fbid, elem)
 
 		$('#filters div, #filters #all, #filters i').click ->
 			filterBy = $(@).attr('data-filter')
@@ -82,8 +98,8 @@ class Search
 
 		filtered
 
-	render: () ->
-		if not @friends? or not @crushes? or not @filterBy?
+	render: () ->		
+		if not @friends? or not @crushes? or not @filterBy? or not @pairs?
 			return
 
 		filtered = @filter()
@@ -92,18 +108,22 @@ class Search
 			$('#friends').html ''
 			_.each filtered, (friend) =>
 				photo = "https://graph.facebook.com/#{friend.uid}/picture?height=320&width=320&access_token=#{@access_token}"
-				@renderOne(friend, _.contains(@crushes, friend.uid), photo)
+				@renderOne(friend, _.contains(@crushes, friend.uid), _.contains(@pairs, friend.uid), photo)
 
 			$('#filters').fadeIn();
 			$('#friends').fadeIn =>
 				@bind()
 
-	renderOne: (friend, crush, photo) ->
+	renderOne: (friend, has_crush, is_pair, photo) ->
 		picked = ''
-		if (crush)
-			picked = 'picked';
+		if (has_crush)
+			picked = 'picked'
 
-		content = 	"<div class='friend #{picked}'>" +
+		pair = ''
+		if (is_pair)
+			pair = 'pair'
+
+		content = 	"<div class='friend #{picked} #{pair}'>" +
 						"<div class='content'>" +
 							"<img src='#{photo}' />" +
 							"<p>#{friend.name}</p>" +

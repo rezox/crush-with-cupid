@@ -11,14 +11,23 @@ class Crushes extends REST_Controller
 
 	function index_get()
 	{
+		if (!$this->fb->is_logged_in())
+			$this->response(array('error' => 'Requries authentication.'), 401);
+
 		$user = $this->fb->get_user();
 		$user = $user['uid'];
 
-		$this->response($this->crushes_model->get($user));
+		$crushes = $this->crushes_model->get($user);
+		$crushes[] = '0'; // hotfix
+		
+		$this->response($crushes);
 	}
 
 	function index_post()
 	{
+		if (!$this->fb->is_logged_in())
+			$this->response(array('error' => 'Requries authentication.'), 401);
+
 		// $from = $this->post('from');
 		$to = $this->post('to');
 
@@ -42,6 +51,9 @@ class Crushes extends REST_Controller
 
 	function index_delete()
 	{
+		if (!$this->fb->is_logged_in())
+			$this->response(array('error' => 'Requries authentication.'), 401);
+
 		$to = $this->delete('to');
 
 		$user = $this->fb->get_user();
