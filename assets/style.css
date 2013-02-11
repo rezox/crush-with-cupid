@@ -9880,6 +9880,10 @@ html {
   text-align: center;
 }
 
+#search #loading-indicator {
+  margin-top: 80px;
+}
+
 #search #heading h1 {
   font-family: 'Oxygen', sans-serif;
   color: #25abe0;
@@ -9893,6 +9897,7 @@ html {
 }
 
 #search #filters {
+  display: none;
   margin-top: 40px;
   margin-bottom: 20px;
   text-align: left;

@@ -11,8 +11,31 @@
 			<img id="female" data-filter="female" src="<?= base_url('assets/img/girl.png') ?>" />
 		</div>
 		<div class="row" id="friends"></div>
+		<div id="loading-indicator"></div>
 		<div id="fb-root"></div>
 		<script>
+			$(document).ready(function() {
+				var opts = {
+				  lines: 13, // The number of lines to draw
+				  length: 11, // The length of each line
+				  width: 3, // The line thickness
+				  radius: 10, // The radius of the inner circle
+				  corners: 1, // Corner roundness (0..1)
+				  rotate: 0, // The rotation offset
+				  color: '#000', // #rgb or #rrggbb
+				  speed: 1, // Rounds per second
+				  trail: 60, // Afterglow percentage
+				  shadow: true, // Whether to render a shadow
+				  hwaccel: false, // Whether to use hardware acceleration
+				  className: 'spinner', // The CSS class to assign to the spinner
+				  zIndex: 2e9, // The z-index (defaults to 2000000000)
+				  top: 'auto', // Top position relative to parent in px
+				  left: 'auto' // Left position relative to parent in px
+				};
+				var target = document.getElementById('loading-indicator');
+				var spinner = new Spinner(opts).spin(target);
+			});
+
 			window.fbAsyncInit = function() {
 			    FB.init({
 					appId      : '<?= get_app_id() ?>',

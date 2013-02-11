@@ -96,6 +96,7 @@ Search = (function() {
         photo = "https://graph.facebook.com/" + friend.uid + "/picture?height=320&width=320&access_token=" + _this.access_token;
         return _this.renderOne(friend, _.contains(_this.crushes, friend.uid), photo);
       });
+      $('#filters').fadeIn();
       return $('#friends').fadeIn(function() {
         return _this.bind();
       });

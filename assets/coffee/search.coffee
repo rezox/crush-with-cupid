@@ -68,6 +68,7 @@ class Search
 				photo = "https://graph.facebook.com/#{friend.uid}/picture?height=320&width=320&access_token=#{@access_token}"
 				@renderOne(friend, _.contains(@crushes, friend.uid), photo)
 
+			$('#filters').fadeIn();
 			$('#friends').fadeIn =>
 				@bind()
 
