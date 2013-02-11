@@ -9,10 +9,18 @@
 
 	.inner {
 		display: inline-block;
+		@media (max-width: 767px) { 
+			display: block;
+			text-align: center;
+			width: 100%;
+		}
 	}
 
 	#logo {
 		margin-left: 35px;
+		@media (max-width: 767px) {
+			margin-left: 10px;
+		}
 		line-height: 50px;
 		// margin: 15px 35px;
 		float: left;
@@ -27,6 +35,9 @@
 	#nav {
 		background-color: #353535;
 		margin-right: 20px;
+		@media (max-width: 767px) { 
+			margin-right: 0px;
+		}
 		text-transform: uppercase;
 		float: right;
 

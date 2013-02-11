@@ -2,7 +2,7 @@
 	<div class="container">
 		<div id="heading">
 			<h1>Does your Valentine's Day crush have a crush on you too?</h1>
-			<p>Here's your risk-free way to find out. </p>
+			<p>Here's your <strong>risk-free</strong> way to find out.</p>
 		</div>
 		<div id="filters">
 			<span id="key">filter:</span>

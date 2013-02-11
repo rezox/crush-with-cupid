@@ -10175,10 +10175,24 @@ html {
   display: inline-block;
 }
 
+@media (max-width: 767px) {
+  #header .inner {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+}
+
 #header #logo {
   margin-left: 35px;
   line-height: 50px;
   float: left;
+}
+
+@media (max-width: 767px) {
+  #header #logo {
+    margin-left: 10px;
+  }
 }
 
 #header #logo img {
@@ -10190,6 +10204,12 @@ html {
   margin-right: 20px;
   text-transform: uppercase;
   float: right;
+}
+
+@media (max-width: 767px) {
+  #header #nav {
+    margin-right: 0px;
+  }
 }
 
 #header #nav ul {
