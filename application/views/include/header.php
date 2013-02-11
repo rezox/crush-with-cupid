@@ -35,8 +35,8 @@
 				<? endif; ?>
 				
 				<li>
-					<img src="<?= base_url('assets/img/header-twitter.png') ?>" />
-					<img src="<?= base_url('assets/img/header-facebook.png') ?>" />
+					<a href="https://twitter.com/CrushWithCupid"><img src="<?= base_url('assets/img/header-twitter.png') ?>" /></a>
+					<a href="https://facebook.com/CrushWithCupid"><img src="<?= base_url('assets/img/header-facebook.png') ?>" /></a>
 				</li>
 			</ul>
 		</div>
