@@ -68,7 +68,7 @@ Search = (function() {
       success: function(response) {
         if (response.paired != null) {
           elem.addClass('pair');
-          return elem.find('.photo').append("<img src='assets/img/pair.png' />");
+          return elem.find('.photo').append("<img class='pair' src='assets/img/pair.png' />");
         }
       }
     });
@@ -165,7 +165,7 @@ Search = (function() {
     }
     content = ("<div class='friend " + picked + " " + pair + "'>") + "<div class='content'>" + "<div class='photo'>" + ("<img src='" + photo + "' />");
     if (is_pair) {
-      content += "<img src='assets/img/pair.png' />";
+      content += "<img class='pair' src='assets/img/pair.png' />";
     }
     content += "</div>" + ("<p>" + friend.name + "</p>") + ("<a data-uid='" + friend.uid + "' class='pick " + picked + "'><i class='icon-heart'></i>Crush</a>") + "</div>" + "</div>";
     return $('#friends').append(content);

@@ -51,7 +51,7 @@ class Search
 			success: (response) ->
 				if response.paired?
 					elem.addClass('pair')
-					elem.find('.photo').append("<img src='assets/img/pair.png' />")
+					elem.find('.photo').append("<img class='pair' src='assets/img/pair.png' />")
 
 
 	remove: (fbid) ->
@@ -130,7 +130,7 @@ class Search
 								"<img src='#{photo}' />"
 		
 		if (is_pair)
-			content += "<img src='assets/img/pair.png' />"
+			content += "<img class='pair' src='assets/img/pair.png' />"
 
 		content +=			"</div>" + 
 							"<p>#{friend.name}</p>" +

@@ -18,9 +18,17 @@
 			color: #888888;
 			font-size: 16px;
 		}
+
+		#help {
+			width: 22px;
+			height: 22px;
+			margin-top: -3px;
+		}
+
+		.highlight {
+			color: #f64956;
+		}
 	}
-
-
 
 	#filters {
 		display: none;
@@ -40,6 +48,7 @@
 			height: 45px;
 			display: inline-block;
 			vertical-align: middle;
+			margin-right: 10px;
 
 			&#female {
 				background: url(img/girl.png);
@@ -142,6 +151,11 @@
 						font-size: 18px;
 						vertical-align: middle;
 					}
+
+					&:hover {
+						background-color: #0d8abc;
+						cursor: pointer;
+					}
 				}
 
 				.photo {
@@ -155,7 +169,16 @@
 						position: absolute;
 						top: 0;
 						left: 0;
+
+						&.pair {
+							width: 160px;
+							height: 160px;
+							top: 15px;
+							left: 15px;
+						}
 					}
+
+
 				}
 			}
 
@@ -163,6 +186,20 @@
 			&.picked {
 				a {
 					background-color: #f64956;
+
+					&:hover {
+						background-color: #e02835;
+					}
+				}
+			}
+
+			&.pair {
+				a {
+					background-color: #f64956;
+
+					&:hover {
+						background-color: #f64956;
+					}
 				}
 			}
 		}

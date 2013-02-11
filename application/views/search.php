@@ -1,8 +1,8 @@
 <div id="search">
 	<div class="container">
 		<div id="heading">
-			<h1>Does your Valentine's Day crush have a crush on you too?</h1>
-			<p>Here's your <strong>risk-free</strong> way to find out.</p>
+			<h1>Does your <span class="highlight">Valentine's Day</span> crush have a crush on you too?</h1>
+			<p>Here's your <strong>risk-free</strong> way to find out. <a href="<?= site_url('/how') ?>"><img id="help" src="<?= base_url('assets/img/help_button.png') ?>" /></a></p>
 		</div>
 		<div id="filters">
 			<span id="key">filter:</span>
