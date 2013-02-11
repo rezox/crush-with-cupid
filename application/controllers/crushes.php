@@ -29,6 +29,14 @@ class Crushes extends REST_Controller
 			return $this->response(array('error' => 'Parameters missing.'), 400);
 
 		$this->crushes_model->add($from, $to);
+
+		if ($this->crushes_model->has_pair($from, $to))
+		{
+			// send them an email
+			
+			// respond with pair found
+		}
+
 		return $this->response(array('success' => 'Added.'));
 	}
 
@@ -41,6 +49,9 @@ class Crushes extends REST_Controller
 
 		if (empty($from) || empty($to))
 			return $this->response(array('error' => 'Parameters missing.'), 400);
+
+		if ($this->crushes_model->has_pair($from, $to))
+			return $this->response(array('error' => 'Pair exists, cannot remove.'), 409);
 
 		$this->crushes_model->remove($from, $to);
 		return $this->response(array('success' => 'Removed.'));

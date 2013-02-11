@@ -55,10 +55,12 @@ class Search
 		$('.pick').click ->
 			fbid = $(@).attr('data-uid');
 			if (_.contains(that.crushes, fbid))
-				$(@).removeClass('picked');
+				# $(@).removeClass('picked');
+				$(@).closest(".friend").removeClass('picked');
 				that.remove(fbid)
 			else
-				$(@).addClass('picked');
+				# $(@).addClass('picked');
+				$(@).closest(".friend").addClass('picked');
 				that.add(fbid)
 
 		$('#filters div, #filters #all, #filters i').click ->
@@ -101,7 +103,7 @@ class Search
 		if (crush)
 			picked = 'picked';
 
-		content = 	"<div class='friend #{friend.sex} #{picked}'>" +
+		content = 	"<div class='friend #{picked}'>" +
 						"<div class='content'>" +
 							"<img src='#{photo}' />" +
 							"<p>#{friend.name}</p>" +

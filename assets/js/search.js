@@ -76,10 +76,10 @@ Search = (function() {
       var fbid;
       fbid = $(this).attr('data-uid');
       if (_.contains(that.crushes, fbid)) {
-        $(this).removeClass('picked');
+        $(this).closest(".friend").removeClass('picked');
         return that.remove(fbid);
       } else {
-        $(this).addClass('picked');
+        $(this).closest(".friend").addClass('picked');
         return that.add(fbid);
       }
     });
@@ -138,7 +138,7 @@ Search = (function() {
     if (crush) {
       picked = 'picked';
     }
-    content = ("<div class='friend " + friend.sex + " " + picked + "'>") + "<div class='content'>" + ("<img src='" + photo + "' />") + ("<p>" + friend.name + "</p>") + ("<a data-uid='" + friend.uid + "' class='pick " + picked + "'><i class='icon-heart'></i>Crush</a>") + "</div>" + "</div>";
+    content = ("<div class='friend " + picked + "'>") + "<div class='content'>" + ("<img src='" + photo + "' />") + ("<p>" + friend.name + "</p>") + ("<a data-uid='" + friend.uid + "' class='pick " + picked + "'><i class='icon-heart'></i>Crush</a>") + "</div>" + "</div>";
     return $('#friends').append(content);
   };
 
