@@ -25,14 +25,39 @@
 
 		margin-top: 40px;
 		margin-bottom: 20px;
+		margin-right: 10px;
 		text-align: left;
 		// font-weight: bold;
 		font-size: 16px;
 		text-transform: uppercase;
 
-		img {
+		.gender {
 			height: 45px;
+			display: inline-block;
 			vertical-align: middle;
+
+			&#female {
+				background: url(img/girl.png);
+				background-size: 42px 45px;
+				width: 21px;
+				background-position: 0 0;
+
+				&.active {
+					background-position: 21px 0;
+				}
+			}
+
+			&#male {
+				background: url(img/guy.png);
+				background-size: 34px 45px;
+				width: 17px;
+				background-position: 0 0;
+
+				&.active {
+					background-position: 17px 0;
+				}
+			}
+
 		}
 
 		#key {
@@ -41,20 +66,24 @@
 		}
 
 		#all {
-			color: #25abe0;
+			color: #888888;
 			margin-right: 10px;
 			&:hover {
 				text-decoration: underline;
 			}
-		}
-
-		img {
-			margin-right: 10px;
+			&.active {
+				color: #25abe0;
+			}
 		}
 
 		#heart {
 			color: #a9a9a9;
 			font-size: 32px;
+			vertical-align: middle;
+
+			&.active {
+				color: #25abe0;
+			}
 		}
 	}
 

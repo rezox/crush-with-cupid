@@ -13,6 +13,7 @@ Search = (function() {
     this.populate();
     FB.api('/me', function(response) {
       _this.filterBy = response.gender === 'female' ? 'male' : 'female';
+      $("#filters #" + _this.filterBy).addClass('active');
       return _this.render();
     });
   }
@@ -82,10 +83,12 @@ Search = (function() {
         return that.add(fbid);
       }
     });
-    return $('#filters img, #filters #all, #filters i').click(function() {
+    return $('#filters div, #filters #all, #filters i').click(function() {
       var filterBy;
       filterBy = $(this).attr('data-filter');
       if (filterBy !== that.filterBy) {
+        $("#filters #" + that.filterBy).removeClass('active');
+        $(this).addClass('active');
         that.filterBy = filterBy;
         return that.render();
       }
@@ -96,7 +99,7 @@ Search = (function() {
     var filtered,
       _this = this;
     filtered = this.friends;
-    if (this.filterBy === 'picked') {
+    if (this.filterBy === 'heart') {
       filtered = _.filter(filtered, function(friend) {
         return _.contains(_this.crushes, friend.uid);
       });

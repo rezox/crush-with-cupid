@@ -6,17 +6,15 @@ html {
 	// background-color: black;
 	// background: url(img/background.jpg);
 
-	#center {
-		position: absolute;
-		background: rgba(0,0,0,0.5);
-		height: 400px;
-		width: 500px;
-		// margin: 0 auto;
+	#content {
 		margin-top: 20px;
-		// padding: 50px 100px;
-		// -webkit-border-radius: 10px;
-		// -moz-border-radius: 10px;
-		// border-radius: 10px;
+	}
+
+	#center {
+		position: relative;
+		background: rgba(0,0,0,0.5);
+		width: 100%;
+		max-width: 500px;
 
 		-moz-box-shadow: 2px 2px 6px rgba(0,0,0,0.75);
 		-webkit-box-shadow: 2px 2px 6px rgba(0,0,0,0.75);
@@ -34,7 +32,7 @@ html {
 			font-family: 'Oxygen', sans-serif;
 			font-weight: 300;
 			font-size: 28px;
-			margin: 30px 30px;
+			padding: 30px 30px 20px 30px;
 			
 			.highlight {
 				color: #f64956;
@@ -56,6 +54,7 @@ html {
 		text-align: center;
 		bottom: 0;
 		margin-top: 40px;
+		padding-bottom: 30px;
 
 		p {
 			font: 'Helvetica Light', 'Helvetica', Arial, sans-serif;

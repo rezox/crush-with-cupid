@@ -4,7 +4,8 @@ class Search
 		@populate()
 
 		FB.api '/me', (response) =>
-			@filterBy = if response.gender is 'female' then 'male' else 'female' 
+			@filterBy = if response.gender is 'female' then 'male' else 'female'
+			$("#filters ##{@filterBy}").addClass('active');
 			@render()
 
 	reset: ->
@@ -60,16 +61,18 @@ class Search
 				$(@).addClass('picked');
 				that.add(fbid)
 
-		$('#filters img, #filters #all, #filters i').click ->
+		$('#filters div, #filters #all, #filters i').click ->
 			filterBy = $(@).attr('data-filter')
-			if filterBy != that.filterBy
+			if filterBy != that.filterBy				
+				$("#filters ##{that.filterBy}").removeClass('active');
+				$(@).addClass('active');
 				that.filterBy = filterBy
 				that.render()
 
 	filter: (friends) =>
 		filtered = @friends
 
-		if @filterBy == 'picked'
+		if @filterBy == 'heart'
 			filtered = _.filter filtered, (friend) =>
 				_.contains(@crushes, friend.uid)
 		else if @filterBy == 'male' || @filterBy == 'female'
