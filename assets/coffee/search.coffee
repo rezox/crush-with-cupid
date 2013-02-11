@@ -61,9 +61,13 @@ class Search
 				photo = "https://graph.facebook.com/#{friend.uid}/picture?height=320&width=320&access_token=#{@access_token}"
 				@renderOne(friend, _.contains(@crushes, friend.uid), photo)
 			
+			$('#friends').isotope();
+
 			$('#friends').fadeIn =>
 				@bind()
-				$('#friends').isotope();
+				$('#friends').isotope
+					filter: ".#{@gender}"
+
 
 
 	renderOne: (friend, crush, photo) ->
@@ -71,12 +75,12 @@ class Search
 		if (crush)
 			picked = 'picked';
 
-		content = "<div class='friend #{friend.sex} #{picked}'>
-				<div class='content'>
-					<img src='#{photo}' />
-					<p>#{friend.name}</p>
-					<a data-uid='#{friend.uid}' class='pick #{picked}'><i class='icon-heart'></i>Crush</a>
-				</div>
-			</div>";
+		content = 	"<div class='friend #{friend.sex} #{picked}'>" +
+						"<div class='content'>" +
+							"<img src='#{photo}' />" +
+							"<p>#{friend.name}</p>" +
+							"<a data-uid='#{friend.uid}' class='pick #{picked}'><i class='icon-heart'></i>Crush</a>" +
+						"</div>" +
+					"</div>";
 
 		$('#friends').append(content);

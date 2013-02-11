@@ -20,15 +20,24 @@
 <body>	
 	<div id="header">
 		<div class="inner" id="logo">
-			<img src="<?= base_url('assets/img/header-logo.png') ?>" />
+			<a href="<?= site_url('/') ?>"><img src="<?= base_url('assets/img/header-logo.png') ?>" /></a>
 		</div>
 		<div class="inner" id="nav">
 			<ul>
-				<li><a href="<?= site_url('/how') ?>">how we do it</a></li>
+				<? if (is_logged_in()): ?>
+					<li><a class="<? if (is_active('search')) echo 'active'; ?>" href="<?= site_url('/search') ?>">search</a></li>
+				<? endif; ?>
+
+				<li><a class="<? if (is_active('how')) echo 'active'; ?>" href="<?= site_url('/how') ?>">how we do it</a></li>
+				
 				<? if(is_logged_in()): ?>
-					<li>share</li>
 					<li><a href="<?= get_auth_url(site_url('/logout')) ?>">logout</a></li>
 				<? endif; ?>
+				
+				<li>
+					<img src="<?= base_url('assets/img/header-twitter.png') ?>" />
+					<img src="<?= base_url('assets/img/header-facebook.png') ?>" />
+				</li>
 			</ul>
 		</div>
 	</div>

@@ -9858,6 +9858,12 @@ html {
   vertical-align: middle;
 }
 
+#header #nav ul li img {
+  margin-top: -4px;
+  margin-left: 5px;
+  height: 23px;
+}
+
 #header #nav ul a {
   color: white;
 }

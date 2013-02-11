@@ -82,9 +82,12 @@ Search = (function() {
         photo = "https://graph.facebook.com/" + friend.uid + "/picture?height=320&width=320&access_token=" + _this.access_token;
         return _this.renderOne(friend, _.contains(_this.crushes, friend.uid), photo);
       });
+      $('#friends').isotope();
       return $('#friends').fadeIn(function() {
         _this.bind();
-        return $('#friends').isotope();
+        return $('#friends').isotope({
+          filter: "." + _this.gender
+        });
       });
     });
   };
@@ -95,7 +98,7 @@ Search = (function() {
     if (crush) {
       picked = 'picked';
     }
-    content = "<div class='friend " + friend.sex + " " + picked + "'>				<div class='content'>					<img src='" + photo + "' />					<p>" + friend.name + "</p>					<a data-uid='" + friend.uid + "' class='pick " + picked + "'><i class='icon-heart'></i>Crush</a>				</div>			</div>";
+    content = ("<div class='friend " + friend.sex + " " + picked + "'>") + "<div class='content'>" + ("<img src='" + photo + "' />") + ("<p>" + friend.name + "</p>") + ("<a data-uid='" + friend.uid + "' class='pick " + picked + "'><i class='icon-heart'></i>Crush</a>") + "</div>" + "</div>";
     return $('#friends').append(content);
   };
 
