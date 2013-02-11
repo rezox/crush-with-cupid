@@ -9892,6 +9892,36 @@ html {
   font-size: 16px;
 }
 
+#search #filters {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+#search #filters img {
+  height: 45px;
+}
+
+#search #filters #key {
+  color: #888888;
+  margin-right: 20px;
+}
+
+#search #filters #all {
+  color: #25abe0;
+  margin-right: 10px;
+}
+
+#search #filters #all:hover {
+  text-decoration: underline;
+}
+
+#search #filters img {
+  margin-right: 10px;
+}
+
 #search #friends .friend {
   margin: 10px;
   margin-bottom: 15px;

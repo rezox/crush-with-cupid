@@ -66,18 +66,31 @@ Search = (function() {
   Search.prototype.bind = function() {
     var that;
     that = this;
-    return $('.pick').click(function() {
+    $('.pick').click(function() {
       var uid;
       uid = $(this).attr('data-uid');
       that.crush(uid);
       $(this).addClass('picked');
       return $(this).parent('.friend').addClass('picked');
     });
+    return $('#filters img, #filters #all').click(function() {
+      var gender;
+      gender = $(this).attr('data-filter');
+      if (gender !== that.gender) {
+        that.gender = gender;
+        return that.render();
+      }
+    });
   };
 
   Search.prototype.filter = function(friends) {
     var filtered;
     filtered = this.friends;
+    if (this.gender !== 'all') {
+      filtered = _.where(filtered, {
+        sex: this.gender
+      });
+    }
     return filtered;
   };
 
@@ -89,17 +102,14 @@ Search = (function() {
     }
     filtered = this.filter();
     return $('#friends').fadeOut(function() {
+      $('#friends').html('');
       _.each(filtered, function(friend) {
         var photo;
         photo = "https://graph.facebook.com/" + friend.uid + "/picture?height=320&width=320&access_token=" + _this.access_token;
         return _this.renderOne(friend, _.contains(_this.crushes, friend.uid), photo);
       });
-      $('#friends').isotope();
       return $('#friends').fadeIn(function() {
-        _this.bind();
-        return $('#friends').isotope({
-          filter: "." + _this.gender
-        });
+        return _this.bind();
       });
     });
   };

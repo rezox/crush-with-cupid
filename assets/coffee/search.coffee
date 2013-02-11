@@ -38,15 +38,21 @@ class Search
 	bind: ->
 		that = this;
 		$('.pick').click ->
-			uid = $(this).attr('data-uid');
+			uid = $(@).attr('data-uid');
 			that.crush(uid)
-			$(this).addClass('picked');
-			$(this).parent('.friend').addClass('picked');
+			$(@).addClass('picked');
+			$(@).parent('.friend').addClass('picked');
+
+		$('#filters img, #filters #all').click ->
+			gender = $(@).attr('data-filter')
+			if gender != that.gender
+				that.gender = gender
+				that.render()
 
 	filter: (friends) =>
 		filtered = @friends
-		# if @gender != 'all'
-		# 	filtered = _.where(filtered, {sex: @gender});
+		if @gender != 'all'
+			filtered = _.where(filtered, {sex: @gender});
 
 		filtered
 
@@ -57,18 +63,13 @@ class Search
 		filtered = @filter()
 
 		$('#friends').fadeOut =>
+			$('#friends').html ''
 			_.each filtered, (friend) =>
 				photo = "https://graph.facebook.com/#{friend.uid}/picture?height=320&width=320&access_token=#{@access_token}"
 				@renderOne(friend, _.contains(@crushes, friend.uid), photo)
-			
-			$('#friends').isotope();
 
 			$('#friends').fadeIn =>
 				@bind()
-				$('#friends').isotope
-					filter: ".#{@gender}"
-
-
 
 	renderOne: (friend, crush, photo) ->
 		picked = ''

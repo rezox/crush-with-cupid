@@ -4,7 +4,12 @@
 			<h1>Does your Valentine's Day crush have a crush on you too?</h1>
 			<p>Here's your risk-free way to find out. </p>
 		</div>
-
+		<div id="filters">
+			<span id="key">filter:</span>
+			<span id="all" data-filter="all">all</span>
+			<img id="male" data-filter="male" src="<?= base_url('assets/img/guy.png') ?>" />
+			<img id="female" data-filter="female" src="<?= base_url('assets/img/girl.png') ?>" />
+		</div>
 		<div class="row" id="friends"></div>
 		<div id="fb-root"></div>
 		<script>
