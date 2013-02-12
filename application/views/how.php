@@ -42,5 +42,7 @@
 				<li>&bull; You can have as many crushes as you want.</li>
 			</ul>
 		</div>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
 	</div>
 </div>
