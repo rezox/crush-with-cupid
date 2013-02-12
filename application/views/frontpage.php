@@ -11,7 +11,7 @@
 				</div>
 				<div id="social">
 					<div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-					<a href="https://twitter.com/share" class="twitter-share-button" data-via="CrushWithCupid">Tweet</a>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?= site_url('/') ?>" data-lang="en" data-text="Does your Valentine's Day crush have a crush on you too? Find out without asking them out.@CrushWithCupid">Tweet</a>
 				</div>
 			</div>
 		</div>
