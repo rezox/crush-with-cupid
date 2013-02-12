@@ -1,6 +1,6 @@
 <?php
 
-class Trim_crushes extends CI_Migration
+class Migration_trim extends CI_Migration
 {
 
 	function up()
