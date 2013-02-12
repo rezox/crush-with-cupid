@@ -18,6 +18,12 @@ $config['smtp_port'] = '';
 $config['smtp_user'] = '';
 $config['smtp_pass'] = '';
 
+/**
+ * Mail type
+ * text or html
+ */
+$config['mailtype'] = 'html';
+
 /*
  * Mail.
  */

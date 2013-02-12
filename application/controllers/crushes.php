@@ -42,8 +42,15 @@ class Crushes extends REST_Controller
 		$response = array('success' => 'Added.');
 		if ($this->crushes_model->has_pair($from, $to))
 		{
+			$this->load->model(array('users_model', 'emails_model'));
+
 			// send them an email
-			
+			$u1 = $this->users_model->find($from);
+			$u2 = $this->users_model->find($to);
+
+			$this->emails_model->send($u2['email'], $u1['name']);
+			$this->emails_model->send($u1['email'], $u2['name']);
+
 			// respond with pair found
 			$response['paired'] = true;
 		}
