@@ -2,7 +2,7 @@
 	<div id="content">
 		<div id="heading">
 			<h1>How we do it</h1>
-			<p>Asking someone out is rough. Too rough. Crush With Cupid here to help.</p>
+			<p>Asking someone out is rough. Too rough. Crush With Cupid is here to help.</p>
 		</div>
 		<div class="row" id="steps">
 			<div id="step1" class="step span6">
@@ -16,7 +16,7 @@
 				<div class="inner">
 					<div class="step-num">2</div>
 					<div class="image"><img id="arrow" src="<?= base_url('assets/img/arrow.png') ?>" /></div>
-					<div class="text">We'll send anonymous emails to your crushes telling them that someone has a crush on them.</div>
+					<div class="text">We'll send <span class="highlight">anonymous</span> emails to your crushes telling them that someone has a crush on them.</div>
 				</div>
 			</div>
 			<div id="step3" class="step span6">
