@@ -48,7 +48,8 @@
 																Could it be, love at last? Yes, yes it is.<br />
 																Your crush <span style="font-size: 18px; font-weight: bold;"><?= $name ?></span> is crushin' on you too!<br />
 																<br />
-                                                                We are estaic to bring you two sexy thangs together. Now go, be young and have fun!<br />
+                                                                We are estaic to bring you two sexy thangs together.<br />
+                                                                Now go, be young and have fun!<br />
                                                                 <br />
                                                                 This love letter brought to you by <a href="<?= site_url() ?>" style="color: #336699; font-weight: normal; text-decoration: underline;">CrushWithCupid.com</a><br />
                                                             </div>
