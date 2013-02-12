@@ -58,6 +58,7 @@ class Fb {
    {
       // die($this->sdk->getUser());
       $user = $this->sdk->getUser();
+      // $user = $this->get_access_token();
       if ($user)
          return true;
 

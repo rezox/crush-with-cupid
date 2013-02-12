@@ -40,7 +40,7 @@
 				<li><a class="<? if (is_active('how')) echo 'active'; ?>" href="<?= site_url('/how') ?>">how we do it</a></li>
 				
 				<? if(is_logged_in()): ?>
-					<li><a href="<?= get_auth_url('/logout') ?>">logout</a></li>
+					<li><a href="<?= site_url('/logout') ?>">logout</a></li>
 				<? endif; ?>
 				
 				<li>

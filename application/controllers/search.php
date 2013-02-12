@@ -11,7 +11,7 @@ class Search extends CI_Controller
 
 	function index()
 	{
-		if (!$this->fb->is_logged_in())
+		if (!is_logged_in())
 			return redirect('/', 'refresh');
 
 		$this->load->view('include/header');

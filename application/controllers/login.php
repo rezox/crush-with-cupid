@@ -7,6 +7,7 @@ class Login extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('fb');
+		$this->load->library('session');
 	}
 
 	function index()
@@ -19,6 +20,8 @@ class Login extends CI_Controller
 		$this->load->model('users_model');
 		if (!$this->users_model->find($user['uid']))
 			$this->users_model->add($user);
+
+		$this->session->set_userdata('user', $user['uid']);
 
 		return redirect('/search', 'refresh');
 	}
