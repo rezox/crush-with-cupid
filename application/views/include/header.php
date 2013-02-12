@@ -6,6 +6,15 @@
 	<meta name="description" content="The risk-free way to see if your Valentine's Day crush has a crush on you too.">
 	<meta name="keywords" content="crush,cupid,dating,valentine,anonymous">
 
+	<meta property="og:title" content="Crush With Cupid" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="The risk-free way to see if your Valentine's Day crush has a crush on you too." />
+	<meta property="og:url" content="<?= site_url('/') ?>" />
+	<meta property="og:site_name" content="Crush With Cupid" />
+	<meta property="og:image" content="<?= base_url('assets/img/profile_image.jpg') ?>" />
+	<meta property="fb:app_id" content="<?= get_app_id() ?>" />
+	<meta property="fb:admins" content="1340490250" />
+
 	<title>Crush With Cupid</title>
 
 	<link href="assets/style.css" rel="stylesheet" />
@@ -31,7 +40,7 @@
 				<li><a class="<? if (is_active('how')) echo 'active'; ?>" href="<?= site_url('/how') ?>">how we do it</a></li>
 				
 				<? if(is_logged_in()): ?>
-					<li><a href="<?= get_auth_url(site_url('/logout')) ?>">logout</a></li>
+					<li><a href="<?= get_auth_url('/logout') ?>">logout</a></li>
 				<? endif; ?>
 				
 				<li>
