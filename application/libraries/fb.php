@@ -67,8 +67,8 @@ class Fb {
 
    function get_auth_url($uri)
    {
-      if ($this->is_logged_in())
-         return $this->sdk->getLogoutUrl(array('next' => $uri));
+      // if ($this->is_logged_in())
+      //    return $this->sdk->getLogoutUrl(array('next' => $uri));
 
       return $this->sdk->getLoginUrl(array(
          'scope' => $this->scope,
