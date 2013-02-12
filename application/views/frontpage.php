@@ -11,13 +11,23 @@
 				</div>
 				<div id="social">
 					<div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-					<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?= site_url('/') ?>" data-lang="en" data-text="Does your Valentine's Day crush have a crush on you too? Find out without asking them out.@CrushWithCupid">Tweet</a>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?= site_url('/') ?>" data-lang="en" data-text="Does your Valentine's Day crush have a crush on you too? Find out without asking them out. @CrushWithCupid">Tweet</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<div id="fb-root"></div>
 <script type="text/javascript">
+    function sendRequestViaMultiFriendSelector() {
+    	if (typeof FB !== "undefined" && FB !== null)
+    	{
+	        FB.ui({method: 'apprequests',
+	          message: "Does your Valentine's Day crush have a crush on you too?"
+	        });
+    	}
+  	}
+
 	$(document).ready(function() { var frontpage = new Frontpage(); });
 
 	window.fbAsyncInit = function() {
