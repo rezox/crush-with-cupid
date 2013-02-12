@@ -41,22 +41,21 @@ class Search
 
 	add: (fbid, elem) =>
 		@crushes.push(fbid);
-		console.log(@crushes)
 
 		$.ajax '/crushes'
 			type: 'POST'
 			dataType: 'json'
 			data: 
 				to: fbid
-			success: (response) ->
+			success: (response) =>
 				if response.paired?
+					@pairs.push(fbid)
 					elem.addClass('pair')
 					elem.find('.photo').append("<img class='pair' src='assets/img/pair.png' />")
 
 
 	remove: (fbid) ->
 		@crushes.splice(_.indexOf(@crushes, fbid), 1)
-		console.log(@crushes)
 
 		$.ajax '/crushes'
 			type: 'DELETE'

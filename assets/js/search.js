@@ -57,8 +57,8 @@ Search = (function() {
   };
 
   Search.prototype.add = function(fbid, elem) {
+    var _this = this;
     this.crushes.push(fbid);
-    console.log(this.crushes);
     return $.ajax('/crushes', {
       type: 'POST',
       dataType: 'json',
@@ -67,6 +67,7 @@ Search = (function() {
       },
       success: function(response) {
         if (response.paired != null) {
+          _this.pairs.push(fbid);
           elem.addClass('pair');
           return elem.find('.photo').append("<img class='pair' src='assets/img/pair.png' />");
         }
@@ -76,7 +77,6 @@ Search = (function() {
 
   Search.prototype.remove = function(fbid) {
     this.crushes.splice(_.indexOf(this.crushes, fbid), 1);
-    console.log(this.crushes);
     return $.ajax('/crushes', {
       type: 'DELETE',
       dataType: 'json',
