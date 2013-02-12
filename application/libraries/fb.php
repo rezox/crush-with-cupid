@@ -48,7 +48,7 @@ class Fb {
 
    function get_user()
    {
-      $query = 'SELECT uid, name, sex, email, pic_square FROM user WHERE uid = me()';
+      $query = 'SELECT uid, name, sex, email FROM user WHERE uid = me()';
       $response = $this->run_fql_query($query);
 
       return $response[0];

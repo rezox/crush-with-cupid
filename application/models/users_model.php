@@ -29,8 +29,7 @@ class Users_model extends CI_Model
 			'fbid' => $user['uid'],
 			'name' => $user['name'],
 			'email' => $user['email'],
-			'sex' => $user['sex'],
-			'pic_square' => $user['pic_square']
+			'sex' => $user['sex']
 		);
 
 		$this->db->insert('users', $fields);
