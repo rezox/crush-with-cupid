@@ -37,4 +37,9 @@ class Users_model extends CI_Model
 		return $this->find($user['uid']);
 	}
 
+	function count()
+	{
+		return $this->db->count_all_results('users');
+	}
+
 }

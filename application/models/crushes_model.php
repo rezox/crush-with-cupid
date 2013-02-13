@@ -99,4 +99,9 @@ class Crushes_model extends CI_Model
 		$this->db->delete('crushes');
 	}
 
+	function count()
+	{
+		return $this->db->count_all_results('crushes');
+	}
+
 }
