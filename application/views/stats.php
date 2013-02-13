@@ -8,5 +8,9 @@
 			<td>Crushes</td>
 			<td><?= $crushes ?></td>
 		</tr>
+		<tr>
+			<td>Pairs</td>
+			<td><?= $emails/2 ?></td>
+		</tr>
 	</table>
 </div>

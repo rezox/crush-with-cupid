@@ -22,4 +22,20 @@ class Emails_model extends CI_Model
 		$this->email->send();
 	}
 
+	function count()
+	{
+		if (!isset($_SERVER['MANDRILL_APIKEY']))
+			return 0;
+
+		$this->load->library('curl');
+		$response = $this->curl->simple_post(
+			'https://mandrillapp.com/api/1.0/senders/info.json', 
+			array('key' => $_SERVER['MANDRILL_APIKEY'], 'address' => 'cupid@crushwithcupid.com')
+		);
+
+		$response = json_decode($response, TRUE);
+
+		return $response['sent'];
+	}
+
 }
