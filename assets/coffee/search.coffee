@@ -4,7 +4,11 @@ class Search
 		@populate()
 
 		FB.api '/me', (response) =>
-			@filterBy = if response.gender is 'female' then 'male' else 'female'
+			@filterBy = 'all'
+			if response.gender == 'female' 
+				@filterBy = 'male' 
+			else if response.gender == 'male'
+				@filterBy = 'female'
 			$("#filters ##{@filterBy}").addClass('active');
 			@render()
 

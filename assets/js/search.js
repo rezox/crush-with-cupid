@@ -12,7 +12,12 @@ Search = (function() {
     this.access_token = FB.getAuthResponse()['accessToken'];
     this.populate();
     FB.api('/me', function(response) {
-      _this.filterBy = response.gender === 'female' ? 'male' : 'female';
+      _this.filterBy = 'all';
+      if (response.gender === 'female') {
+        _this.filterBy = 'male';
+      } else if (response.gender === 'male') {
+        _this.filterBy = 'female';
+      }
       $("#filters #" + _this.filterBy).addClass('active');
       return _this.render();
     });

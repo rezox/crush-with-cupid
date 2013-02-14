@@ -10,6 +10,8 @@ class Pages extends CI_Controller {
 		$this->load->view($page);
 		$this->load->view('include/facebook');
 		$this->load->view('include/footer');
+
+		$this->output->cache(1440);
 	}
 
 }
