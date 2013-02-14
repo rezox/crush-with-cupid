@@ -8,9 +8,31 @@ Search = (function() {
 
     this.add = __bind(this.add, this);
 
-    var _this = this;
+    var toggleBackToTop,
+      _this = this;
     this.access_token = FB.getAuthResponse()['accessToken'];
     this.populate();
+    toggleBackToTop = _.debounce(function(e) {
+      if ($('#back-to-top').is(":visible")) {
+        if ($(window).scrollTop() <= $('#friends').position().top) {
+          return $('#back-to-top').hide("slide", {
+            direction: "right"
+          }, 500);
+        }
+      } else {
+        if ($(window).scrollTop() >= $('#friends').position().top) {
+          return $('#back-to-top').show("slide", {
+            direction: "right"
+          }, 500);
+        }
+      }
+    }, 250);
+    $(window).scroll(toggleBackToTop);
+    $('#back-to-top').click(function() {
+      return $('html, body').animate({
+        scrollTop: $('#filters').offset().top - 20
+      }, 500);
+    });
     FB.api('/me', function(response) {
       _this.filterBy = 'all';
       if (response.gender === 'female') {

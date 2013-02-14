@@ -3,6 +3,22 @@ class Search
 		@access_token = FB.getAuthResponse()['accessToken']
 		@populate()
 
+		toggleBackToTop = _.debounce (e) ->
+			if $('#back-to-top').is(":visible")
+				if $(window).scrollTop() <= $('#friends').position().top
+					$('#back-to-top').hide("slide", { direction: "right" }, 500);
+			else
+				if $(window).scrollTop() >= $('#friends').position().top
+					$('#back-to-top').show("slide", { direction: "right" }, 500);
+		, 250
+
+		# binding scroll event.
+		$(window).scroll toggleBackToTop
+		$('#back-to-top').click ->
+			$('html, body').animate
+         		scrollTop: $('#filters').offset().top-20
+     		, 500
+
 		FB.api '/me', (response) =>
 			@filterBy = 'all'
 			if response.gender == 'female' 

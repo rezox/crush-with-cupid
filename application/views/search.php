@@ -1,4 +1,7 @@
 <div id="search">
+	<div id="back-to-top">
+		Jump To Top
+	</div>
 	<div class="container">
 		<div id="heading">
 			<h1>Does your <span class="highlight">Valentine's Day</span> crush have a crush on you too?</h1>
