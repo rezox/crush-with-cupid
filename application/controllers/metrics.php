@@ -1,9 +1,9 @@
 <?php 
 
-class Metrics extends REST_Controller
+class Metrics extends CI_Controller
 {
 
-	function index_get()
+	function index()
 	{
 		$ips = array(
 			'97.107.130.57'
@@ -18,7 +18,7 @@ class Metrics extends REST_Controller
 			'emails_model'
 		));
 
-		$this->response(array(
+		echo json_encode(array(
 			'users' => $this->users_model->count(),
 			'crushes' => $this->crushes_model->count(),
 			'emails' => $this->emails_model->count()
