@@ -9,7 +9,7 @@ class Metrics extends CI_Controller
 			'97.107.130.57'
 		);
 
-		if (!in_array($_SERVER['REMOTE_ADDR'], $ips))
+		if (!in_array($_SERVER['HTTP_X_FORWARDED_FOR'], $ips))
 			show_404();
 
 		$this->load->model(array(
