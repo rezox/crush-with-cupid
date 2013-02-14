@@ -7,8 +7,9 @@
 				<p>If not, don't worry. It'll be Cupid's little secret.</p>
 				<div id="login-bar">
 					<a id="fb-login" href="<?= get_auth_url(site_url('/login')) ?>"><img src="<?= base_url('assets/img/facebook-connect.png') ?>" /></a>
-					<p>By signing in you agree to our <a href="<?= site_url('/terms') ?>">Terms of Use</a> and <a href="<?= site_url('/privacy') ?>">Privacy Policy</a>.</p>
+					<p><span id="disclosure">Liking and connecting <strong>won't</strong> show up on your timeline.</span><br />By signing in you agree to our <a href="<?= site_url('/terms') ?>">Terms of Use</a> and <a href="<?= site_url('/privacy') ?>">Privacy Policy</a>.</p>
 				</div>
+				<p></p>
 				<div id="social">
 					<div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 					<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?= site_url('/') ?>" data-lang="en" data-via="CrushWithCupid" data-text="Does your Valentine's Day crush have a crush on you too? Find out without asking them out.">Tweet</a>
