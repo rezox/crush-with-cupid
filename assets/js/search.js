@@ -141,7 +141,6 @@ Search = (function() {
       }
       $("#filters #" + that.filterBy).removeClass('active');
       that.filterBy = 'search';
-      $("#filters #all").addClass('active');
       if (searchBy !== that.searchBy) {
         that.searchBy = searchBy;
         return that.render();
@@ -152,7 +151,8 @@ Search = (function() {
     return $('#filters div, #filters #all, #filters i').click(function() {
       var filterBy;
       filterBy = $(this).attr('data-filter');
-      if (filterBy !== that.filterBy) {
+      if (filterBy !== that.filterBy || (that.searchBy != null)) {
+        that.searchBy = null;
         $("#filters #" + that.filterBy).removeClass('active');
         $(this).addClass('active');
         that.filterBy = filterBy;

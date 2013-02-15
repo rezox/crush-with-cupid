@@ -110,7 +110,6 @@ class Search
 
 			$("#filters ##{that.filterBy}").removeClass('active');
 			that.filterBy = 'search'
-			$("#filters #all").addClass('active');
 
 			if searchBy != that.searchBy
 				that.searchBy = searchBy
@@ -122,7 +121,9 @@ class Search
 
 		$('#filters div, #filters #all, #filters i').click ->
 			filterBy = $(@).attr('data-filter')
-			if filterBy != that.filterBy				
+
+			if filterBy != that.filterBy or that.searchBy?
+				that.searchBy = null	
 				$("#filters ##{that.filterBy}").removeClass('active');
 				$(@).addClass('active');
 				that.filterBy = filterBy
