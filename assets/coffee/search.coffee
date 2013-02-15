@@ -19,6 +19,8 @@ class Search
          		scrollTop: $('#filters').offset().top-20
      		, 500
 
+     	@searchBy = null
+
 		FB.api '/me', (response) =>
 			@filterBy = 'all'
 			if response.gender == 'female' 
@@ -99,6 +101,25 @@ class Search
 				elem.addClass('picked');
 				that.add(fbid, elem)
 
+		searchAction = _.debounce ->
+			searchBy = $('#search-query').val()
+			console.log(searchBy)
+
+			if not searchBy? or searchBy == ''
+				return;
+
+			$("#filters ##{that.filterBy}").removeClass('active');
+			that.filterBy = 'search'
+			$("#filters #all").addClass('active');
+
+			if searchBy != that.searchBy
+				that.searchBy = searchBy
+				that.render()
+		, 500
+
+		$('#search-query').keypress searchAction
+		$('#search-query').focus searchAction
+
 		$('#filters div, #filters #all, #filters i').click ->
 			filterBy = $(@).attr('data-filter')
 			if filterBy != that.filterBy				
@@ -115,6 +136,13 @@ class Search
 				_.contains(@crushes, friend.uid)
 		else if @filterBy == 'male' || @filterBy == 'female'
 			filtered = _.where(filtered, {sex: @filterBy});
+		else if @filterBy == 'search'
+			if @searchBy?
+				regexp = new RegExp(@searchBy, "i")
+				filtered = _.filter filtered, (friend) =>
+					if friend.name.search(regexp) > -1
+						return true
+					return false
 
 		filtered
 
@@ -130,7 +158,7 @@ class Search
 				photo = "https://graph.facebook.com/#{friend.uid}/picture?height=320&width=320&access_token=#{@access_token}"
 				@renderOne(friend, _.contains(@crushes, friend.uid), _.contains(@pairs, friend.uid), photo)
 
-			$('#filters').fadeIn();
+			$('#rundown').fadeIn();
 			$('#friends').fadeIn =>
 				@bind()
 

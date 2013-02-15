@@ -29,9 +29,10 @@ Search = (function() {
     }, 250);
     $(window).scroll(toggleBackToTop);
     $('#back-to-top').click(function() {
-      return $('html, body').animate({
+      $('html, body').animate({
         scrollTop: $('#filters').offset().top - 20
       }, 500);
+      return this.searchBy = null;
     });
     FB.api('/me', function(response) {
       _this.filterBy = 'all';
@@ -114,7 +115,7 @@ Search = (function() {
   };
 
   Search.prototype.bind = function() {
-    var that;
+    var searchAction, that;
     that = this;
     $('.pick').click(function() {
       var elem, fbid;
@@ -131,6 +132,23 @@ Search = (function() {
         return that.add(fbid, elem);
       }
     });
+    searchAction = _.debounce(function() {
+      var searchBy;
+      searchBy = $('#search-query').val();
+      console.log(searchBy);
+      if (!(searchBy != null) || searchBy === '') {
+        return;
+      }
+      $("#filters #" + that.filterBy).removeClass('active');
+      that.filterBy = 'search';
+      $("#filters #all").addClass('active');
+      if (searchBy !== that.searchBy) {
+        that.searchBy = searchBy;
+        return that.render();
+      }
+    }, 500);
+    $('#search-query').keypress(searchAction);
+    $('#search-query').focus(searchAction);
     return $('#filters div, #filters #all, #filters i').click(function() {
       var filterBy;
       filterBy = $(this).attr('data-filter');
@@ -144,7 +162,7 @@ Search = (function() {
   };
 
   Search.prototype.filter = function(friends) {
-    var filtered,
+    var filtered, regexp,
       _this = this;
     filtered = this.friends;
     if (this.filterBy === 'heart') {
@@ -155,6 +173,16 @@ Search = (function() {
       filtered = _.where(filtered, {
         sex: this.filterBy
       });
+    } else if (this.filterBy === 'search') {
+      if (this.searchBy != null) {
+        regexp = new RegExp(this.searchBy, "i");
+        filtered = _.filter(filtered, function(friend) {
+          if (friend.name.search(regexp) > -1) {
+            return true;
+          }
+          return false;
+        });
+      }
     }
     return filtered;
   };
@@ -173,7 +201,7 @@ Search = (function() {
         photo = "https://graph.facebook.com/" + friend.uid + "/picture?height=320&width=320&access_token=" + _this.access_token;
         return _this.renderOne(friend, _.contains(_this.crushes, friend.uid), _.contains(_this.pairs, friend.uid), photo);
       });
-      $('#filters').fadeIn();
+      $('#rundown').fadeIn();
       return $('#friends').fadeIn(function() {
         return _this.bind();
       });

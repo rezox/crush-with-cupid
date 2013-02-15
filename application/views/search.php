@@ -7,12 +7,17 @@
 			<h1>Does your <span class="highlight">Valentine's Day</span> crush have a crush on you too?</h1>
 			<p>Here's your <strong>risk-free</strong> way to find out. <a href="<?= site_url('/how') ?>"><img id="help" src="<?= base_url('assets/img/help_button.png') ?>" /></a></p>
 		</div>
-		<div id="filters">
-			<span id="key">filter:</span>
-			<span id="all" data-filter="all">all</span>
-			<div class="gender" id="male" data-filter="male"></div>
-			<div class="gender" id="female" data-filter="female"></div>
-			<i id="heart" data-filter="heart" class="icon-heart"></i>
+		<div id="rundown">
+			<span id="filters">
+				<span id="key">filter:</span>
+				<span id="all" data-filter="all">all</span>
+				<div class="gender" id="male" data-filter="male"></div>
+				<div class="gender" id="female" data-filter="female"></div>
+				<i id="heart" data-filter="heart" class="icon-heart"></i>
+			</span>
+			<span id="search-bar">
+				<input id="search-query" type="text" class="search-query" placeholder="search by name">
+			</span>
 		</div>
 		<div class="row" id="friends">
 			<div id="loading-indicator"></div>
