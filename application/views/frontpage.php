@@ -2,9 +2,9 @@
 	<div class="container">
 		<div id="center">
 			<div id="content">
-				<h1>Does your <span class="highlight">Valentine's Day</span> crush have a crush on you too?</h1>
-				<p>Select your crush and we'll send them an <strong>anonymous</strong> message that someone is into them. If they're crushin' on you too you'll both be notified.</p>
-				<p>If not, don't worry. It'll be Cupid's little secret.</p>
+				<h1>Does your <span class="highlight">crush</span> have a <br />crush on you too?</h1>
+				<p>Select your crush and we'll send them an <strong>anonymous</strong> love letter. If they're crushin' on you too we'll reveal your match.</p>
+				<p>If not, don't worry. It'll be our little secret.</p>
 				<div id="login-bar">
 					<a id="fb-login" href="<?= get_auth_url(site_url('/login')) ?>"><img src="<?= base_url('assets/img/facebook-connect.png') ?>" /></a>
 					<p><span id="disclosure">Liking and connecting <strong>won't</strong> show up on your timeline.</span><br />By signing in you agree to our <a href="<?= site_url('/terms') ?>">Terms of Use</a> and <a href="<?= site_url('/privacy') ?>">Privacy Policy</a>.</p>

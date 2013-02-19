@@ -2,7 +2,6 @@
 	<div id="content">
 		<div id="heading">
 			<h1>How we do it</h1>
-			<p>Asking someone out is rough. Too rough. Crush With Cupid is here to help.</p>
 		</div>
 		<div class="row" id="steps">
 			<div id="step1" class="step span6">
